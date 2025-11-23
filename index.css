@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global selection color using Tailwind theme (compiled by Tailwind) */
+:root {}
+
+::selection {
+  background-color: theme('colors.primary.500');
+  color: #ffffff;
+}
