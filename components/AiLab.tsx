@@ -61,8 +61,8 @@ const TrendScout = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-10">
-        <h3 className="text-3xl font-serif italic mb-2 text-zinc-900 dark:text-white">Trend Scout</h3>
-        <p className="text-zinc-500 dark:text-zinc-400">Discover the latest in photography and design using Google Search data.</p>
+        <h3 className="text-3xl font-sans font-bold mb-2 text-zinc-900 dark:text-white">Trend Scout</h3>
+        <p className="text-zinc-600 dark:text-zinc-400">Discover the latest in photography and design using Google Search data.</p>
       </div>
 
       <form onSubmit={handleSearch} className="relative mb-12">
@@ -71,7 +71,7 @@ const TrendScout = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="e.g. What are the emerging color trends for 2025?"
-          className="w-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full py-4 pl-6 pr-14 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-primary dark:focus:border-white transition-colors shadow-sm"
+          className="w-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full py-4 pl-6 pr-14 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-500 focus:outline-none focus:border-primary dark:focus:border-white transition-colors shadow-sm"
         />
         <button 
           type="submit" 
@@ -88,10 +88,10 @@ const TrendScout = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-white/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-8 shadow-sm"
+            className="bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl p-8 shadow-sm"
           >
             <div className="prose prose-zinc dark:prose-invert max-w-none">
-              <p className="whitespace-pre-wrap text-zinc-700 dark:text-zinc-200 leading-relaxed">{result}</p>
+              <p className="whitespace-pre-wrap text-zinc-800 dark:text-zinc-200 leading-relaxed">{result}</p>
             </div>
 
             {groundingChunks.length > 0 && (
@@ -106,7 +106,7 @@ const TrendScout = () => {
                           href={chunk.web.uri} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-3 py-2 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-md text-xs text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-zinc-500 transition-all"
+                          className="flex items-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-md text-xs text-zinc-700 dark:text-zinc-400 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-zinc-500 transition-all"
                         >
                           <ExternalLink size={10} />
                           {chunk.web.title || "Source"}
@@ -201,20 +201,20 @@ const MotionStudio = () => {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-10">
-        <h3 className="text-3xl font-serif italic mb-2 text-zinc-900 dark:text-white">Motion Studio</h3>
-        <p className="text-zinc-500 dark:text-zinc-400">Bring your still images to life with Veo generative AI.</p>
+        <h3 className="text-3xl font-sans font-bold mb-2 text-zinc-900 dark:text-white">Motion Studio</h3>
+        <p className="text-zinc-600 dark:text-zinc-400">Bring your still images to life with Veo generative AI.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Input Section */}
-        <div className="bg-white/30 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden transition-colors">
+        <div className="bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center min-h-[300px] relative overflow-hidden transition-colors shadow-sm dark:shadow-none">
           {previewUrl ? (
             <div className="relative w-full h-full flex flex-col items-center">
               <img src={previewUrl} alt="Preview" className="w-full h-48 object-cover rounded-lg mb-4" />
               <div className="flex gap-4">
                 <button 
                    onClick={() => fileInputRef.current?.click()}
-                   className="text-xs text-zinc-500 hover:text-primary dark:text-zinc-400 dark:hover:text-white underline"
+                   className="text-xs text-zinc-600 hover:text-primary dark:text-zinc-400 dark:hover:text-white underline"
                 >
                   Change Image
                 </button>
@@ -223,7 +223,7 @@ const MotionStudio = () => {
           ) : (
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className="cursor-pointer flex flex-col items-center gap-4 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors"
+              className="cursor-pointer flex flex-col items-center gap-4 text-zinc-500 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300 transition-colors"
             >
               <div className="w-16 h-16 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
                 <Upload size={24} />
@@ -241,7 +241,7 @@ const MotionStudio = () => {
         </div>
 
         {/* Output Section */}
-        <div className="bg-white/30 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center min-h-[300px] transition-colors">
+        <div className="bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center min-h-[300px] transition-colors shadow-sm dark:shadow-none">
           {isGenerating ? (
             <div className="text-center">
               <Loader2 className="w-10 h-10 animate-spin text-primary dark:text-white mx-auto mb-4" />
@@ -298,7 +298,7 @@ export const AiLab: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Innovation</h2>
-          <h1 className="text-4xl md:text-6xl font-serif italic text-zinc-900 dark:text-zinc-100 mb-6">AI Lab</h1>
+          <h1 className="text-4xl md:text-6xl font-sans font-bold text-zinc-900 dark:text-zinc-100 mb-6">AI Lab</h1>
           <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl mx-auto">
             Exploring the boundaries of creativity with generative intelligence.
           </p>
@@ -311,7 +311,7 @@ export const AiLab: React.FC = () => {
              className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all ${
                activeTab === 'search' 
                  ? 'bg-primary text-white border-primary' 
-                 : 'bg-transparent text-zinc-500 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-zinc-600'
+                 : 'bg-transparent text-zinc-600 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-zinc-600'
              }`}
            >
              <Search size={16} />
@@ -322,7 +322,7 @@ export const AiLab: React.FC = () => {
              className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all ${
                activeTab === 'veo' 
                  ? 'bg-primary text-white border-primary' 
-                 : 'bg-transparent text-zinc-500 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-zinc-600'
+                 : 'bg-transparent text-zinc-600 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-zinc-600'
              }`}
            >
              <Film size={16} />

@@ -39,18 +39,18 @@ export const Portfolio: React.FC = () => {
       >
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-6xl font-serif italic mb-4 text-zinc-900 dark:text-zinc-100">Selected Works</h2>
+            <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Selected Works</h2>
             <p className="text-zinc-600 dark:text-zinc-400 max-w-md">
               A curated collection of projects exploring the intersection of design, technology, and human emotion.
             </p>
           </div>
           
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-nowrap overflow-x-auto gap-4 pb-2 md:pb-0 w-full md:w-auto scrollbar-hide">
             {Object.values(ProjectCategory).map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
                   filter === cat 
                     ? 'bg-primary text-white border-primary' 
                     : 'bg-transparent text-zinc-500 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-primary hover:text-primary dark:hover:text-primary'
@@ -99,7 +99,7 @@ export const Portfolio: React.FC = () => {
 
                 <div className="mt-4 flex justify-between items-start">
                   <div>
-                    <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-200">{project.title}</h3>
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-200">{project.title}</h3>
                     <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1">{project.category}</p>
                   </div>
                   <span className="text-xs border border-zinc-300 dark:border-zinc-800 px-2 py-1 rounded text-zinc-500">
@@ -199,7 +199,7 @@ export const Portfolio: React.FC = () => {
                       <span className="inline-block px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-primary mb-4 border border-zinc-200 dark:border-zinc-700 uppercase tracking-wider">
                         {selectedProject.category}
                       </span>
-                      <h2 className="text-4xl md:text-5xl font-serif italic text-zinc-900 dark:text-white mb-2">
+                      <h2 className="text-4xl md:text-5xl font-sans font-bold text-zinc-900 dark:text-white mb-2">
                         {selectedProject.title}
                       </h2>
                       <p className="text-xl text-zinc-600 dark:text-zinc-400 font-light">{selectedProject.description}</p>

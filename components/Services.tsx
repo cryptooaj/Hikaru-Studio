@@ -66,8 +66,8 @@ export const Services: React.FC = () => {
           className="mb-20 text-center md:text-left"
         >
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Our Services</h2>
-          <h1 className="text-4xl md:text-6xl font-serif italic text-zinc-900 dark:text-zinc-100 mb-6">What We Offer</h1>
-          <p className="text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl italic font-serif opacity-80">
+          <h1 className="text-4xl md:text-6xl font-sans font-bold text-zinc-900 dark:text-zinc-100 mb-6">What We Offer</h1>
+          <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl italic font-sans opacity-90 dark:opacity-80">
             "Almost before we knew it, we had left the ground. A shining crescent far beneath the flying vessel."
           </p>
         </motion.div>
@@ -80,20 +80,20 @@ export const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="group p-8 rounded-2xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800/50 hover:border-primary dark:hover:border-zinc-700 hover:shadow-lg dark:hover:bg-zinc-900/60 transition-all duration-300"
+              className="group p-8 rounded-2xl bg-white dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800/50 shadow-sm hover:shadow-lg dark:hover:bg-zinc-900/60 hover:border-primary dark:hover:border-zinc-700 transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
                   <category.icon size={24} />
                 </div>
-                <h3 className="text-2xl font-serif italic text-zinc-900 dark:text-zinc-100">{category.title}</h3>
+                <h3 className="text-2xl font-sans font-bold text-zinc-900 dark:text-zinc-100">{category.title}</h3>
               </div>
               
               <ul className="space-y-6">
                 {category.items.map((item, i) => (
-                  <li key={i} className="border-l-2 border-zinc-200 dark:border-zinc-800 pl-4 hover:border-primary dark:hover:border-zinc-500 transition-colors">
+                  <li key={i} className="border-l-2 border-zinc-100 dark:border-zinc-800 pl-4 hover:border-primary dark:hover:border-zinc-500 transition-colors">
                     <h4 className="text-zinc-800 dark:text-zinc-200 font-medium">{item.name}</h4>
-                    {item.desc && <p className="text-zinc-500 text-sm mt-1">{item.desc}</p>}
+                    {item.desc && <p className="text-zinc-600 dark:text-zinc-500 text-sm mt-1">{item.desc}</p>}
                   </li>
                 ))}
               </ul>

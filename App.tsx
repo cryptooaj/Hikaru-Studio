@@ -128,7 +128,7 @@ const App: React.FC = () => {
            transition={{ delay: 0.5 }}
            className="flex flex-col items-center z-10"
          >
-            <span className="font-serif italic text-3xl text-white tracking-wider">Hikaru Studio</span>
+            <span className="font-sans font-bold text-3xl text-white tracking-wider">Hikaru Studio</span>
             <div className="flex items-center gap-2 mt-3">
                <motion.div 
                  className="h-[1px] w-8 bg-zinc-700"

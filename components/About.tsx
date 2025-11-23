@@ -28,7 +28,7 @@ export const About: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
         </div>
         <div className="absolute bottom-8 left-8 right-8">
-           <p className="font-serif italic text-2xl md:text-3xl leading-tight text-white drop-shadow-md">
+           <p className="font-sans italic font-light text-2xl md:text-3xl leading-tight text-white drop-shadow-md">
              "Photography is creating an experience that stays with the viewer."
            </p>
         </div>
@@ -38,15 +38,15 @@ export const About: React.FC = () => {
       <div className="w-full md:w-1/2 space-y-10">
         <div>
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Who I Am</h2>
-          <h1 className="text-5xl font-serif italic mb-6 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">I'm FARNAZ</h1>
-          <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 mb-6">
+          <h1 className="text-5xl font-sans font-bold mb-6 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">I'm FARNAZ</h1>
+          <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-400 mb-6">
             <MapPin size={16} />
             <span className="text-sm tracking-widest uppercase">Tehran, Iran</span>
           </div>
-          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg transition-colors duration-300">
+          <p className="text-zinc-800 dark:text-zinc-300 leading-relaxed text-lg transition-colors duration-300">
             My main focus is on commercial and advertising photography, helping brands showcase their identity through striking and meaningful visuals. However, my work also extends across different fields including portrait, fashion, artistic, and urban photography.
           </p>
-          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg mt-4 transition-colors duration-300">
+          <p className="text-zinc-700 dark:text-zinc-400 leading-relaxed text-lg mt-4 transition-colors duration-300">
             At Studio Hikaru, photography is more than just capturing a moment it’s about creating an experience that stays with the viewer long after the image is seen.
           </p>
         </div>
@@ -62,14 +62,14 @@ export const About: React.FC = () => {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 + idx * 0.1 }}
-              className="flex items-start gap-4 p-4 border border-zinc-200 dark:border-zinc-900 hover:border-primary dark:hover:border-zinc-700 rounded-lg transition-colors bg-white/50 dark:bg-zinc-900/30 shadow-sm dark:shadow-none"
+              className="flex items-start gap-4 p-4 border border-zinc-200 dark:border-zinc-900 hover:border-primary dark:hover:border-zinc-700 rounded-lg transition-colors bg-white dark:bg-zinc-900/30 shadow-sm dark:shadow-none"
             >
               <div className="p-3 bg-zinc-100 dark:bg-zinc-800 rounded-full text-primary dark:text-white">
                 <item.icon size={20} />
               </div>
               <div>
                 <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-200">{item.title}</h3>
-                <p className="text-zinc-500 text-sm">{item.desc}</p>
+                <p className="text-zinc-600 dark:text-zinc-500 text-sm">{item.desc}</p>
               </div>
             </motion.div>
           ))}

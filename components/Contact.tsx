@@ -28,35 +28,35 @@ export const Contact: React.FC = () => {
         {/* Info */}
         <div className="w-full lg:w-1/2 space-y-8">
            <div>
-             <h2 className="text-6xl font-serif italic mb-6 text-zinc-900 dark:text-white">Let's Connect</h2>
-             <p className="text-zinc-600 dark:text-zinc-400 text-lg">
+             <h2 className="text-6xl font-sans font-bold mb-6 text-zinc-900 dark:text-white">Let's Connect</h2>
+             <p className="text-zinc-700 dark:text-zinc-400 text-lg">
                Ready to elevate your brand's visual identity? Reach out to discuss your next project.
              </p>
            </div>
 
            <div className="space-y-6 py-8">
-             <a href="mailto:hikarustudio.photo@gmail.com" className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
+             <a href="mailto:hikarustudio.photo@gmail.com" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Mail className="w-5 h-5" />
                </div>
                <span className="text-lg">hikarustudio.photo@gmail.com</span>
              </a>
              
-             <a href="tel:09123855908" className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
+             <a href="tel:09123855908" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Phone className="w-5 h-5" />
                </div>
                <span className="text-lg">09123855908</span>
              </a>
 
-             <a href="https://www.studiohikaru.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
+             <a href="https://www.studiohikaru.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Globe className="w-5 h-5" />
                </div>
                <span className="text-lg">www.studiohikaru.com</span>
              </a>
 
-             <div className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300">
+             <div className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center">
                  <MapPin className="w-5 h-5" />
                </div>
@@ -65,20 +65,20 @@ export const Contact: React.FC = () => {
            </div>
 
            <div className="pt-8 border-t border-zinc-200 dark:border-zinc-900">
-             <p className="text-sm text-zinc-500 mb-6 uppercase tracking-wider">Follow & Chat</p>
+             <p className="text-sm text-zinc-600 dark:text-zinc-500 mb-6 uppercase tracking-wider">Follow & Chat</p>
              <div className="flex flex-wrap gap-4">
                <a href="https://www.linkedin.com/in/farnaz-hoseini-140ba3330" target="_blank" rel="noopener noreferrer" 
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
+                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
                  <Linkedin size={18} />
                  <span>LinkedIn</span>
                </a>
                <a href="http://wa.me/+989123855908" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
+                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
                  <MessageCircle size={18} />
                  <span>WhatsApp</span>
                </a>
                <a href="http://t.me/ifarnazhoseini" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
+                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
                  <Send size={18} />
                  <span>Telegram</span>
                </a>
@@ -87,8 +87,8 @@ export const Contact: React.FC = () => {
         </div>
 
         {/* Form */}
-        <div className="w-full lg:w-1/2 bg-white/50 dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none">
-          <h3 className="text-xl font-serif italic text-zinc-900 dark:text-white mb-8">Send a message</h3>
+        <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors">
+          <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
                 <label className="text-xs text-zinc-500 uppercase tracking-wider">Name</label>
@@ -97,7 +97,7 @@ export const Contact: React.FC = () => {
                   required
                   value={formState.name}
                   onChange={(e) => setFormState({...formState, name: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
+                  className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
                   placeholder="Your Name"
                 />
             </div>
@@ -108,7 +108,7 @@ export const Contact: React.FC = () => {
                   required
                   value={formState.email}
                   onChange={(e) => setFormState({...formState, email: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
+                  className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
                   placeholder="your@email.com"
                 />
             </div>
@@ -120,7 +120,7 @@ export const Contact: React.FC = () => {
                   rows={5}
                   value={formState.message}
                   onChange={(e) => setFormState({...formState, message: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700 resize-none"
+                  className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700 resize-none"
                   placeholder="Tell me about your project..."
                 />
             </div>
