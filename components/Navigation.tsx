@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageState } from '../types';
 import { NAV_ITEMS } from '../constants';
@@ -10,13 +10,32 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
+  const [dark, setDark] = useState<boolean>(false);
+
+  useEffect(() => {
+    const initial = typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
+    setDark(Boolean(initial));
+  }, []);
+
+  const toggleTheme = () => {
+    const root = document.documentElement;
+    if (root.classList.contains('dark')) {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setDark(false);
+    } else {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setDark(true);
+    }
+  };
   return (
     <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-xl font-serif italic font-bold cursor-pointer"
+        className="text-xl font-sans italic font-bold cursor-pointer"
         onClick={() => onNavigate(PageState.HOME)}
       >
         Hikaru Studio
@@ -50,6 +69,15 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate 
         ))}
       </motion.ul>
 
+      <div className="hidden md:flex items-center gap-4">
+        <button
+          onClick={toggleTheme}
+          className="px-3 py-2 rounded-full border border-zinc-700 bg-transparent text-zinc-200 hover:bg-[rgba(191,79,81,0.12)] transition-colors"
+          aria-label="Toggle theme"
+        >
+          {dark ? 'Light' : 'Dark'}
+        </button>
+      </div>
       {/* Mobile Menu Button */}
       <div className="md:hidden">
         <button className="text-sm uppercase tracking-widest" onClick={() => onNavigate(PageState.PORTFOLIO)}>

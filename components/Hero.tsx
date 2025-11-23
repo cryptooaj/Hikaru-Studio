@@ -2,7 +2,28 @@
 import React, { useEffect } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { PageState } from '../types';
-import { ArrowRight } from 'lucide-react';
+
+/**
+ * Local ArrowRight SVG component to avoid depending on 'lucide-react'
+ * Accepts standard SVG props (className, width/height, etc.).
+ */
+const ArrowRight: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    focusable="false"
+    {...props}
+  >
+    <path d="M5 12h14" />
+    <path d="M12 5l7 7-7 7" />
+  </svg>
+);
 
 interface HeroProps {
   onNavigate: (page: PageState) => void;
@@ -91,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 
                 {/* Lens Glare */}
                 <motion.div 
-                  className="absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full"
+                  className="absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-[rgba(191,79,81,0.1)] rounded-full"
                   style={{ transform: "translateZ(80px) scale(1.2)" }}
                 />
              </div>
@@ -108,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           }}
         />
         <motion.div 
-          className="absolute w-64 h-64 bg-purple-500/10 rounded-full blur-3xl mix-blend-screen pointer-events-none"
+          className="absolute w-64 h-64 bg-[rgba(191,79,81,0.1)] rounded-full blur-3xl mix-blend-screen pointer-events-none"
           style={{ 
              x: useTransform(mouseX, [0, 1], [30, -30]),
              y: useTransform(mouseY, [0, 1], [30, -30]),

@@ -293,7 +293,7 @@ export const AiLab: React.FC = () => {
   return (
     <section id={PageState.AI_LAB} className="min-h-screen w-full py-32 px-6 md:px-12 bg-black relative">
       {/* Ambient Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-900/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[rgba(191,79,81,0.1)] rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -303,7 +303,7 @@ export const AiLab: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Innovation</h2>
-          <h1 className="text-4xl md:text-6xl font-serif italic text-zinc-100 mb-6">AI Lab</h1>
+          <h1 className="text-4xl md:text-6xl font-sans italic text-zinc-100 mb-6">AI Lab</h1>
           <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
             Exploring the boundaries of creativity with generative intelligence.
           </p>

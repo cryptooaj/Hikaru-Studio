@@ -33,7 +33,7 @@ export const About: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         </div>
         <div className="absolute bottom-8 left-8 right-8">
-           <p className="font-serif italic text-2xl md:text-3xl leading-tight text-white drop-shadow-md">
+           <p className="font-sans italic text-2xl md:text-3xl leading-tight text-white drop-shadow-md">
              "Photography is creating an experience that stays with the viewer."
            </p>
         </div>
@@ -43,7 +43,7 @@ export const About: React.FC = () => {
       <div className="w-full md:w-1/2 space-y-10">
         <div>
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Who I Am</h2>
-          <h1 className="text-5xl font-serif italic mb-6 text-zinc-100">I'm FARNAZ</h1>
+          <h1 className="text-5xl font-sans italic mb-6 text-zinc-100">I'm FARNAZ</h1>
           <div className="flex items-center gap-2 text-zinc-400 mb-6">
             <MapPin size={16} />
             <span className="text-sm tracking-widest uppercase">Tehran, Iran</span>

@@ -29,7 +29,7 @@ export const Contact: React.FC = () => {
         {/* Info */}
         <div className="w-full lg:w-1/2 space-y-8">
            <div>
-             <h2 className="text-6xl font-serif italic mb-6 text-white">Let's Connect</h2>
+            <h2 className="text-6xl font-sans italic mb-6 text-white">Let's Connect</h2>
              <p className="text-zinc-400 text-lg">
                Ready to elevate your brand's visual identity? Reach out to discuss your next project.
              </p>
@@ -89,7 +89,7 @@ export const Contact: React.FC = () => {
 
         {/* Form */}
         <div className="w-full lg:w-1/2 bg-zinc-900/20 p-8 rounded-2xl border border-zinc-800/50">
-          <h3 className="text-xl font-serif italic text-white mb-8">Send a message</h3>
+          <h3 className="text-xl font-sans italic text-white mb-8">Send a message</h3>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
                 <label className="text-xs text-zinc-500 uppercase tracking-wider">Name</label>

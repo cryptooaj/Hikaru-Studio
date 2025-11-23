@@ -41,7 +41,7 @@ export const Portfolio: React.FC = () => {
       >
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-6xl font-serif italic mb-4">Selected Works</h2>
+            <h2 className="text-4xl md:text-6xl font-sans italic mb-4">Selected Works</h2>
             <p className="text-zinc-400 max-w-md">
               A curated collection of projects exploring the intersection of design, technology, and human emotion.
             </p>
@@ -201,7 +201,7 @@ export const Portfolio: React.FC = () => {
                       <span className="inline-block px-3 py-1 rounded-full bg-zinc-800 text-xs font-medium text-zinc-400 mb-4 border border-zinc-700 uppercase tracking-wider">
                         {selectedProject.category}
                       </span>
-                      <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-2">
+                      <h2 className="text-4xl md:text-5xl font-sans italic text-white mb-2">
                         {selectedProject.title}
                       </h2>
                       <p className="text-xl text-zinc-400 font-light">{selectedProject.description}</p>

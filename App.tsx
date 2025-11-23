@@ -69,7 +69,7 @@ const App: React.FC = () => {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center bg-zinc-950 z-50 relative overflow-hidden">
          {/* Background gradient spot */}
-         <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-purple-900/10 opacity-20 pointer-events-none" />
+         <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-[rgba(191,79,81,0.1)] opacity-20 pointer-events-none" />
          
          <div className="relative flex items-center justify-center w-64 h-64">
             {/* Core Light Pulse */}
@@ -110,7 +110,7 @@ const App: React.FC = () => {
            transition={{ delay: 0.5 }}
            className="flex flex-col items-center z-10"
          >
-            <span className="font-serif italic text-3xl text-white tracking-wider">Hikaru Studio</span>
+            <span className="font-sans italic text-3xl text-white tracking-wider">Hikaru Studio</span>
             <div className="flex items-center gap-2 mt-3">
                <motion.div 
                  className="h-[1px] w-8 bg-zinc-700"
@@ -132,7 +132,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[rgb(191,79,81)] selection:text-white">
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
       
       <main className="relative w-full">
