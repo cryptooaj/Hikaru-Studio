@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
@@ -15,17 +14,39 @@ const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageState>(PageState.HOME);
   const [isLoading, setIsLoading] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  
+  // Theme State
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    }
+    return 'dark';
+  });
 
   useEffect(() => {
     // Simulate initial asset loading
-    const timer = setTimeout(() => setIsLoading(false), 2500); // Increased slightly to show off animation
+    const timer = setTimeout(() => setIsLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll Spy to update navigation state and Back to Top visibility
+  // Theme Effect
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
+  // Scroll Spy
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Update Page State
       const sections = Object.values(PageState);
       let current = PageState.HOME;
 
@@ -33,7 +54,6 @@ const App: React.FC = () => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Check if section is within the viewport (roughly)
           if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
             current = section;
           }
@@ -41,7 +61,6 @@ const App: React.FC = () => {
       }
       setCurrentPage(current);
 
-      // 2. Update Back To Top Visibility
       if (window.scrollY > 500) {
         setShowBackToTop(true);
       } else {
@@ -68,8 +87,7 @@ const App: React.FC = () => {
   if (isLoading) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center bg-zinc-950 z-50 relative overflow-hidden">
-         {/* Background gradient spot */}
-         <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/10 to-[rgba(191,79,81,0.1)] opacity-20 pointer-events-none" />
+         <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-900/10 opacity-20 pointer-events-none" />
          
          <div className="relative flex items-center justify-center w-64 h-64">
             {/* Core Light Pulse */}
@@ -84,14 +102,14 @@ const App: React.FC = () => {
             
             {/* Inner Aperture Ring */}
             <motion.div
-              className="absolute w-16 h-16 border-[1px] border-zinc-800 border-t-zinc-400 rounded-full"
+              className="absolute w-16 h-16 border-[1px] border-zinc-800 border-t-primary rounded-full"
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             />
 
             {/* Middle Ring */}
             <motion.div
-              className="absolute w-24 h-24 border-[1px] border-zinc-800 border-l-zinc-600 rounded-full opacity-60"
+              className="absolute w-24 h-24 border-[1px] border-zinc-800 border-l-primary/50 rounded-full opacity-60"
               animate={{ rotate: -360 }}
               transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             />
@@ -110,7 +128,7 @@ const App: React.FC = () => {
            transition={{ delay: 0.5 }}
            className="flex flex-col items-center z-10"
          >
-            <span className="font-sans italic text-3xl text-white tracking-wider">Hikaru Studio</span>
+            <span className="font-serif italic text-3xl text-white tracking-wider">Hikaru Studio</span>
             <div className="flex items-center gap-2 mt-3">
                <motion.div 
                  className="h-[1px] w-8 bg-zinc-700"
@@ -132,8 +150,13 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[rgb(191,79,81)] selection:text-white">
-      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
+    <div className="min-h-screen font-sans selection:bg-primary selection:text-white transition-colors duration-300">
+      <Navigation 
+        currentPage={currentPage} 
+        onNavigate={handleNavigate} 
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
       
       <main className="relative w-full">
         <Hero onNavigate={handleNavigate} />
@@ -152,7 +175,7 @@ const App: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-40 p-3 bg-white text-black rounded-full shadow-lg hover:bg-zinc-200 transition-colors"
+            className="fixed bottom-8 right-8 z-40 p-3 bg-white dark:bg-zinc-800 text-black dark:text-white rounded-full shadow-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors border border-zinc-200 dark:border-zinc-700"
             aria-label="Back to top"
           >
             <ArrowUp className="w-6 h-6" />

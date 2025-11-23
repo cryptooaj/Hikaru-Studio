@@ -29,3 +29,22 @@ export interface Project {
   fullDescription?: string;
   originalImageUrl?: string;
 }
+
+// Global declarations to fix TypeScript errors
+declare global {
+  interface AIStudio {
+    hasSelectedApiKey: () => Promise<boolean>;
+    openSelectKey: () => Promise<void>;
+  }
+
+  interface Window {
+    aistudio?: AIStudio;
+  }
+  
+  namespace NodeJS {
+    interface ProcessEnv {
+      API_KEY: string;
+      [key: string]: string | undefined;
+    }
+  }
+}
