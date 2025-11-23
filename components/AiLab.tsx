@@ -293,7 +293,7 @@ export const AiLab: React.FC = () => {
   return (
     <section id={PageState.AI_LAB} className="min-h-screen w-full py-32 px-6 md:px-12 bg-black relative">
       {/* Ambient Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[rgba(191,79,81,0.1)] rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div

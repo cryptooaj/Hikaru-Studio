@@ -72,7 +72,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate 
       <div className="hidden md:flex items-center gap-4">
         <button
           onClick={toggleTheme}
-          className="px-3 py-2 rounded-full border border-zinc-700 bg-transparent text-zinc-200 hover:bg-[rgba(191,79,81,0.12)] transition-colors"
+          className="px-3 py-2 rounded-full border border-zinc-700 bg-transparent text-zinc-200 hover:bg-primary/10 transition-colors"
           aria-label="Toggle theme"
         >
           {dark ? 'Light' : 'Dark'}

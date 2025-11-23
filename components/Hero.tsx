@@ -112,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 
                 {/* Lens Glare */}
                 <motion.div 
-                  className="absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-[rgba(191,79,81,0.1)] rounded-full"
+                  className="absolute w-full h-full bg-gradient-to-br from-blue-500/10 to-primary/10 rounded-full"
                   style={{ transform: "translateZ(80px) scale(1.2)" }}
                 />
              </div>
@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           }}
         />
         <motion.div 
-          className="absolute w-64 h-64 bg-[rgba(191,79,81,0.1)] rounded-full blur-3xl mix-blend-screen pointer-events-none"
+          className="absolute w-64 h-64 bg-primary/10 rounded-full blur-3xl mix-blend-screen pointer-events-none"
           style={{ 
              x: useTransform(mouseX, [0, 1], [30, -30]),
              y: useTransform(mouseY, [0, 1], [30, -30]),
