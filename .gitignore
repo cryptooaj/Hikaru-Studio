@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Environment
+.env
+
+# Build output
+dist/
+.tmp-tailwind.css
+tmp-tailwind.css
+
+# Vite / cache
+.vite/
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
