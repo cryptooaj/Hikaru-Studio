@@ -47,25 +47,25 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    title: "Vogue Editorial",
+    title: "Latte Art: High-Resolution Print Campaign",
     category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "https://picsum.photos/800/1000?random=4",
-    description: "Magazine layout and typography conceptualization.",
-    year: "2023",
-    client: "Vogue Concept",
-    tags: ["Editorial", "Typography", "Fashion"],
-    fullDescription: "A concept editorial layout designed to push the boundaries of traditional fashion typography. This project experiments with overlapping text, aggressive negative space, and asymmetric grid systems to create a dynamic reading experience that complements high-fashion imagery."
+    imageUrl: "/public/cafe & beverge/latte.jpg",
+    description: "A close-up studio shot of a classic latte, expertly styled and captured for large-scale lightbox display. The focus is on the rich texture of the foam, the precision of the latte art, and the sophisticated color harmony of the beverage against the modern, textured surface.",
+    year: "2024",
+    client: "Cafe Land",
+    tags: ["Food Photography", "Beverage Photography", "Commercial", "Latte Art", "Studio Lighting", "High-Resolution"],
+    fullDescription: "This photograph was executed specifically for Cafe Land's 2024 print campaign, designed for large-scale lightbox display. The core focus was achieving maximum technical quality and high-resolution detail to ensure perfect clarity and impact when printed at significant size. Captured using a prime lens (fixed focal length) to guarantee superior sharpness and detail across the frame. The lighting setup was meticulously controlled studio lighting, using precise directional light to sculpt the cup and highlight the microfoam's texture, giving the image a sense of depth and luxury. The composition utilizes a subtle diagonal line to lead the eye toward the perfectly executed latte art—the focal point of the image. The subject is decoratively styled on a clean, textured grey surface, ensuring a sophisticated, modern aesthetic. Careful color grading and post-production were applied to enhance the rich, warm brown tones of the espresso and the bright white of the steamed milk, creating a balanced and appealing harmony that makes the latte instantly inviting. The final image was optimized for high-quality, large-format printing on a lightbox, demanding flawless resolution and tonal range to maximize visual presence in a retail environment."
   },
   {
     id: 5,
-    title: "Artisan Brew",
+    title: "Layered Cocktail: Dynamic Natural Light Content",
     category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "https://picsum.photos/1000/800?random=5",
-    description: "Visual identity for a high-end coffee roaster.",
-    year: "2022",
-    client: "Artisan Brew",
-    tags: ["Coffee", "Branding", "Packaging"],
-    fullDescription: "Created for a boutique coffee shop, this project focused on the warmth and texture of the brewing process. Close-up macro shots of beans and steam were paired with a warm, earthy color palette to evoke the sensory experience of fresh coffee."
+    imageUrl: "/public/cafe & beverge/redandblue.jpg",
+    description: "High-impact, dynamic shot of a multi-layered mocktail/cocktail. Captured in optimal natural sunlight with a prime lens to enhance liquid clarity and action for Parsian Cafe's 2025 Instagram content.",
+    year: "2025",
+    client: "Parsian Cafe",
+    tags: ["Beverage Photography", "Natural Light", "Social Media Content", "Cocktail", "Dynamic Shot", "Food Styling"],
+    fullDescription: "This image was created for Parsian Cafe's 2025 Instagram content campaign, focusing on vividness, freshness, and high quality tailored for mobile viewing and social engagement. The shot utilizes completely natural light, captured during the ideal time of day (optimal sunlight) to provide sharp highlights, rich shadows, and excellent clarity. The core objective was high-quality separation and clarity of the liquid product, clearly defining the distinct blue, red, and clear layers. A prime lens (fixed focal length) was used to ensure superior sharpness and detail. The composition is dynamic, featuring a captured moment of action as a stream of liquid falls into the glass, creating excitement and visual interest—perfect for generating stops and engagement on social feeds. The high-resolution capture and vibrant color palette were optimized specifically for use as high-impact Instagram content."
   },
   {
     id: 6,
