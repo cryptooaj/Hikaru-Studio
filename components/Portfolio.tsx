@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { ProjectCategory, Project, PageState } from '../types';
-import { ExternalLink, X, User, Calendar, Tag, Layers } from 'lucide-react';
+import { ExternalLink, X, User, Calendar, Tag, Layers, Play } from 'lucide-react';
 
 export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.ALL);
@@ -95,6 +95,13 @@ export const Portfolio: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-900 shadow-md hover:shadow-xl transition-all duration-500">
+                  {/* Video Indicator Badge */}
+                  {project.videoUrl && (
+                    <div className="absolute top-3 right-3 z-20 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+                      <Play size={14} className="text-white ml-0.5" fill="currentColor" />
+                    </div>
+                  )}
+
                   {/* Image with Shared Layout ID */}
                   <motion.img
                     layoutId={`project-image-${project.id}`}
@@ -107,7 +114,7 @@ export const Portfolio: React.FC = () => {
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                        <ExternalLink className="w-6 h-6 text-white" />
+                        {project.videoUrl ? <Play className="w-6 h-6 text-white ml-1" fill="currentColor" /> : <ExternalLink className="w-6 h-6 text-white" />}
                      </div>
                   </div>
                 </div>
@@ -157,10 +164,22 @@ export const Portfolio: React.FC = () => {
                 <X size={24} />
               </button>
 
-              {/* Image Section */}
-              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group">
-                {selectedProject.originalImageUrl ? (
-                  /* Toggle View */
+              {/* Media Section */}
+              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group flex items-center justify-center">
+                
+                {selectedProject.videoUrl ? (
+                  /* Video Player */
+                  <video 
+                    src={selectedProject.videoUrl}
+                    className="w-full h-full object-cover"
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                    poster={getImageUrl(selectedProject)}
+                  />
+                ) : selectedProject.originalImageUrl ? (
+                  /* Toggle View (Image) */
                   <>
                     <AnimatePresence mode='wait'>
                         <motion.img
