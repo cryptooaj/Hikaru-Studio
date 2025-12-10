@@ -1,13 +1,9 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Camera, MapPin, Star } from 'lucide-react';
 import { PageState } from '../types';
 
 export const About: React.FC = () => {
-  // Using absolute path from public root to avoid URL constructor errors
-  const [imgSrc, setImgSrc] = useState("/asset/farnaz.jpg");
-
   return (
     <motion.section
       id={PageState.ABOUT}
@@ -21,11 +17,9 @@ export const About: React.FC = () => {
         <div className="absolute inset-0 border border-zinc-300 dark:border-zinc-800 rounded-lg rotate-3 transform translate-x-4 translate-y-4 transition-colors duration-300"></div>
         <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden shadow-lg">
              <img 
-              src={imgSrc}
-              onError={() => {
-                // Fallback if local asset is missing or fails to load
-                console.warn("Failed to load local asset: farnaz.jpg");
-                setImgSrc("https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80");
+              src="/farnaz.jpg" 
+              onError={(e) => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80";
               }}
               alt="Farnaz Hosseini" 
               className="w-full h-full object-cover" 

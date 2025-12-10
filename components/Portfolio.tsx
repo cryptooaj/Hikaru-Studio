@@ -1,15 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { ProjectCategory, Project, PageState } from '../types';
-import { ExternalLink, X, User, Calendar, Tag, Layers, Play } from 'lucide-react';
+import { ExternalLink, X, User, Calendar, Tag, Layers } from 'lucide-react';
 
 export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.ALL);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
   
   // Toggle state for Before/After
   const [showBefore, setShowBefore] = useState(false);
@@ -29,18 +27,6 @@ export const Portfolio: React.FC = () => {
       document.body.style.overflow = 'unset';
     };
   }, [selectedProject]);
-
-  const handleImageError = (id: number) => {
-    setFailedImages(prev => ({ ...prev, [id]: true }));
-  };
-
-  const getImageUrl = (project: Project) => {
-    // If local failed and we have a fallback, use fallback. Otherwise use original url (which might be local or remote)
-    if (failedImages[project.id] && project.fallbackImageUrl) {
-      return project.fallbackImageUrl;
-    }
-    return project.imageUrl;
-  };
 
   return (
     <>
@@ -95,18 +81,10 @@ export const Portfolio: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-900 shadow-md hover:shadow-xl transition-all duration-500">
-                  {/* Video Indicator Badge */}
-                  {project.videoUrl && (
-                    <div className="absolute top-3 right-3 z-20 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
-                      <Play size={14} className="text-white ml-0.5" fill="currentColor" />
-                    </div>
-                  )}
-
                   {/* Image with Shared Layout ID */}
                   <motion.img
                     layoutId={`project-image-${project.id}`}
-                    src={getImageUrl(project)}
-                    onError={() => handleImageError(project.id)}
+                    src={project.imageUrl}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
@@ -114,7 +92,7 @@ export const Portfolio: React.FC = () => {
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                        {project.videoUrl ? <Play className="w-6 h-6 text-white ml-1" fill="currentColor" /> : <ExternalLink className="w-6 h-6 text-white" />}
+                        <ExternalLink className="w-6 h-6 text-white" />
                      </div>
                   </div>
                 </div>
@@ -164,22 +142,10 @@ export const Portfolio: React.FC = () => {
                 <X size={24} />
               </button>
 
-              {/* Media Section */}
-              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group flex items-center justify-center">
-                
-                {selectedProject.videoUrl ? (
-                  /* Video Player */
-                  <video 
-                    src={selectedProject.videoUrl}
-                    className="w-full h-full object-cover"
-                    controls
-                    autoPlay
-                    loop
-                    playsInline
-                    poster={getImageUrl(selectedProject)}
-                  />
-                ) : selectedProject.originalImageUrl ? (
-                  /* Toggle View (Image) */
+              {/* Image Section */}
+              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group">
+                {selectedProject.originalImageUrl ? (
+                  /* Toggle View */
                   <>
                     <AnimatePresence mode='wait'>
                         <motion.img
@@ -188,8 +154,7 @@ export const Portfolio: React.FC = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4 }}
-                            src={showBefore ? selectedProject.originalImageUrl : getImageUrl(selectedProject)}
-                            onError={() => handleImageError(selectedProject.id)}
+                            src={showBefore ? selectedProject.originalImageUrl : selectedProject.imageUrl}
                             alt={selectedProject.title}
                             className="w-full h-full object-cover"
                         />
@@ -214,8 +179,7 @@ export const Portfolio: React.FC = () => {
                   <>
                     <motion.img
                       layoutId={`project-image-${selectedProject.id}`}
-                      src={getImageUrl(selectedProject)}
-                      onError={() => handleImageError(selectedProject.id)}
+                      src={selectedProject.imageUrl}
                       alt={selectedProject.title}
                       className="w-full h-full object-cover"
                     />
