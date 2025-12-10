@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
@@ -8,6 +9,7 @@ export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.ALL);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
   
   // Toggle state for Before/After
   const [showBefore, setShowBefore] = useState(false);
@@ -27,6 +29,18 @@ export const Portfolio: React.FC = () => {
       document.body.style.overflow = 'unset';
     };
   }, [selectedProject]);
+
+  const handleImageError = (id: number) => {
+    setFailedImages(prev => ({ ...prev, [id]: true }));
+  };
+
+  const getImageUrl = (project: Project) => {
+    // If local failed and we have a fallback, use fallback. Otherwise use original url (which might be local or remote)
+    if (failedImages[project.id] && project.fallbackImageUrl) {
+      return project.fallbackImageUrl;
+    }
+    return project.imageUrl;
+  };
 
   return (
     <>
@@ -84,7 +98,8 @@ export const Portfolio: React.FC = () => {
                   {/* Image with Shared Layout ID */}
                   <motion.img
                     layoutId={`project-image-${project.id}`}
-                    src={project.imageUrl}
+                    src={getImageUrl(project)}
+                    onError={() => handleImageError(project.id)}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
@@ -154,7 +169,8 @@ export const Portfolio: React.FC = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.4 }}
-                            src={showBefore ? selectedProject.originalImageUrl : selectedProject.imageUrl}
+                            src={showBefore ? selectedProject.originalImageUrl : getImageUrl(selectedProject)}
+                            onError={() => handleImageError(selectedProject.id)}
                             alt={selectedProject.title}
                             className="w-full h-full object-cover"
                         />
@@ -179,7 +195,8 @@ export const Portfolio: React.FC = () => {
                   <>
                     <motion.img
                       layoutId={`project-image-${selectedProject.id}`}
-                      src={selectedProject.imageUrl}
+                      src={getImageUrl(selectedProject)}
+                      onError={() => handleImageError(selectedProject.id)}
                       alt={selectedProject.title}
                       className="w-full h-full object-cover"
                     />

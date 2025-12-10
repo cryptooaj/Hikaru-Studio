@@ -22,6 +22,7 @@ export interface Project {
   title: string;
   category: ProjectCategory;
   imageUrl: string;
+  fallbackImageUrl?: string;
   description: string;
   year: string;
   client?: string;
