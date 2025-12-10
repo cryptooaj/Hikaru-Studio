@@ -17,7 +17,7 @@ export const About: React.FC = () => {
         <div className="absolute inset-0 border border-zinc-300 dark:border-zinc-800 rounded-lg rotate-3 transform translate-x-4 translate-y-4 transition-colors duration-300"></div>
         <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden shadow-lg">
              <img 
-              src="/farnaz.jpg" 
+              src="/public/farnaz.jpg" 
               onError={(e) => {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80";
               }}
