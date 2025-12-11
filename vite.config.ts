@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, (process as any).cwd(), '');
   
   return {
-    base: '/Hikaru-Studio/',
+    base: '/',
     plugins: [react()],
     define: {
       // Safely expose only the API_KEY from the loaded environment
