@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     id: 1,
     title: "Café Lune: The Artisan Cake Series",
     category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "/public/cafe & beverge/cake.jpg",
+    imageUrl: "/cafe & beverge/cake.jpg",
     //originalImageUrl: "https://picsum.photos/800/1200?random=1",
     description: "High-detail capture of handcrafted baked goods for large-format décor.",
     year: "2024",
