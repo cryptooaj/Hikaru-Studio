@@ -4,7 +4,6 @@ export enum PageState {
   PORTFOLIO = 'PORTFOLIO',
   ABOUT = 'ABOUT',
   SERVICES = 'SERVICES',
-  AI_LAB = 'AI_LAB',
   CONTACT = 'CONTACT',
 }
 

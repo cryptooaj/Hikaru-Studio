@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { Portfolio } from './components/Portfolio';
 import { About } from './components/About';
 import { Services } from './components/Services';
-import { AiLab } from './components/AiLab';
 import { Contact } from './components/Contact';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageState } from './types';
@@ -163,7 +162,6 @@ const App: React.FC = () => {
         <Portfolio />
         <About />
         <Services />
-        <AiLab />
         <Contact />
       </main>
 
