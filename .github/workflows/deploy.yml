@@ -33,6 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          VITE_APP_BASE: /Hikaru-Studio/
           # VITAL: This maps the GitHub Secret to the environment variable 
           # so your vite.config.ts can access 'env.API_KEY'
           API_KEY: ${{ secrets.API_KEY }}
