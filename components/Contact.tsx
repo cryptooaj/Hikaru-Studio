@@ -1,19 +1,85 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Linkedin, Send, MessageCircle, Globe } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { PageState } from '../types';
+import emailjs from '@emailjs/browser';
+
+// ----------------------------------------------------------------------
+// CONFIGURATION
+// ----------------------------------------------------------------------
+// INSTRUCTIONS:
+// 1. Create an account at https://www.emailjs.com/
+// 2. Create a new Email Service (e.g., Gmail) and get the SERVICE_ID.
+// 3. Create an Email Template and get the TEMPLATE_ID.
+// 4. Go to Account > API Keys and get your PUBLIC_KEY.
+// 5. Paste them below.
+
+const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
+const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
+const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
 
 export const Contact: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
+  
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for reaching out! I'll get back to you soon.");
-    setFormState({ name: '', email: '', message: '' });
+    if (!form.current) return;
+
+    setIsSending(true);
+    setStatus(null);
+
+    // CHECK: Are keys configured?
+    const isConfigured = 
+      EMAILJS_SERVICE_ID && 
+      EMAILJS_TEMPLATE_ID && 
+      EMAILJS_PUBLIC_KEY;
+
+    if (!isConfigured) {
+      // DEMO MODE: Simulate sending if keys are missing
+      console.warn("EmailJS keys missing. Running in DEMO mode. (Check Contact.tsx to configure)");
+      
+      setTimeout(() => {
+        setIsSending(false);
+        setStatus({
+          type: 'success',
+          message: 'Message sent! (Demo Mode: No email was actually sent)'
+        });
+        setFormState({ user_name: '', user_email: '', message: '' });
+      }, 2000);
+      return;
+    }
+
+    // REAL MODE: Send via EmailJS
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      
+      setStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully.'
+      });
+      setFormState({ user_name: '', user_email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Failed:', error);
+      setStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again or email directly.'
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -55,13 +121,6 @@ export const Contact: React.FC = () => {
                </div>
                <span className="text-lg">www.studiohikaru.com</span>
              </a>
-
-             <div className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300">
-               <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center">
-                 <MapPin className="w-5 h-5" />
-               </div>
-               <span className="text-lg">Tehran, Iran</span>
-             </div>
            </div>
 
            <div className="pt-8 border-t border-zinc-200 dark:border-zinc-900">
@@ -89,14 +148,15 @@ export const Contact: React.FC = () => {
         {/* Form */}
         <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors">
           <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
                 <label className="text-xs text-zinc-500 uppercase tracking-wider">Name</label>
                 <input 
                   type="text" 
+                  name="user_name"
                   required
-                  value={formState.name}
-                  onChange={(e) => setFormState({...formState, name: e.target.value})}
+                  value={formState.user_name}
+                  onChange={(e) => setFormState({...formState, user_name: e.target.value})}
                   className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
                   placeholder="Your Name"
                 />
@@ -105,9 +165,10 @@ export const Contact: React.FC = () => {
                 <label className="text-xs text-zinc-500 uppercase tracking-wider">Email</label>
                 <input 
                   type="email" 
+                  name="user_email"
                   required
-                  value={formState.email}
-                  onChange={(e) => setFormState({...formState, email: e.target.value})}
+                  value={formState.user_email}
+                  onChange={(e) => setFormState({...formState, user_email: e.target.value})}
                   className="w-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800 rounded-lg px-4 py-3 text-zinc-900 dark:text-white focus:outline-none focus:border-primary dark:focus:border-white/50 transition-colors placeholder-zinc-400 dark:placeholder-zinc-700"
                   placeholder="your@email.com"
                 />
@@ -116,6 +177,7 @@ export const Contact: React.FC = () => {
             <div className="space-y-2">
                 <label className="text-xs text-zinc-500 uppercase tracking-wider">Message</label>
                 <textarea 
+                  name="message"
                   required
                   rows={5}
                   value={formState.message}
@@ -125,13 +187,39 @@ export const Contact: React.FC = () => {
                 />
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-col gap-4">
               <button 
                 type="submit"
-                className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black px-6 py-4 rounded-lg font-medium hover:bg-primary dark:hover:bg-zinc-200 transition-colors"
+                disabled={isSending}
+                className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black px-6 py-4 rounded-lg font-medium hover:bg-primary dark:hover:bg-zinc-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Send Message
+                {isSending ? (
+                  <>
+                    <Loader2 className="animate-spin w-5 h-5" />
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </button>
+
+              <AnimatePresence>
+                {status && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm ${
+                      status.type === 'success' 
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200' 
+                        : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-200'
+                    }`}
+                  >
+                    {status.type === 'success' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+                    {status.message}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </form>
         </div>

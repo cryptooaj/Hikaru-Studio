@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { ProjectCategory, Project, PageState } from '../types';
-import { ExternalLink, X, User, Calendar, Tag, Layers } from 'lucide-react';
+import { ExternalLink, X, User, Calendar, Tag, Layers, Play, ZoomIn, Pause, Volume2, VolumeX } from 'lucide-react';
 
 export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.ALL);
@@ -11,6 +12,17 @@ export const Portfolio: React.FC = () => {
   
   // Toggle state for Before/After
   const [showBefore, setShowBefore] = useState(false);
+  
+  // Zoom state
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomOrigin, setZoomOrigin] = useState({ x: 50, y: 50 });
+
+  // Video Player State
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [videoProgress, setVideoProgress] = useState(0);
+  const [videoError, setVideoError] = useState(false);
 
   const filteredProjects = PROJECTS.filter(
     p => filter === ProjectCategory.ALL || p.category === filter
@@ -20,13 +32,97 @@ export const Portfolio: React.FC = () => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
       setShowBefore(false); 
+      setIsZoomed(false);
+      
+      // Reset Video State
+      // We set isPlaying to false initially and let the 'autoPlay' event (onPlay) 
+      // drive it to true. This prevents state mismatch if autoplay fails.
+      setIsPlaying(false);
+      setIsMuted(true);
+      setVideoProgress(0);
+      setVideoError(false);
     } else {
       document.body.style.overflow = 'unset';
+      setIsZoomed(false);
     }
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [selectedProject]);
+
+  const handleCloseModal = () => {
+    setIsZoomed(false);
+    setSelectedProject(null);
+  };
+
+  const handleImageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isZoomed) return;
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomOrigin({ x, y });
+  };
+
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (selectedProject?.videoUrl && !videoError) return;
+
+    if (!isZoomed) {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = ((e.clientX - left) / width) * 100;
+        const y = ((e.clientY - top) / height) * 100;
+        setZoomOrigin({ x, y });
+        setIsZoomed(true);
+    } else {
+        setIsZoomed(false);
+    }
+  };
+
+  // Video Handlers
+  const togglePlay = async (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        try {
+          await videoRef.current.play();
+          // State setIsPlaying(true) is handled by onPlay callback
+        } catch (error) {
+          console.error("Playback failed or interrupted:", error);
+          // If play fails (e.g. interrupted), ensure state reflects paused
+          setIsPlaying(false);
+        }
+      } else {
+        videoRef.current.pause();
+        // State setIsPlaying(false) is handled by onPause callback
+      }
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVideoTimeUpdate = () => {
+    if (videoRef.current) {
+        const progress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+        setVideoProgress(progress || 0);
+    }
+  };
+
+  const handleVideoSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const manualChange = Number(e.target.value);
+    setVideoProgress(manualChange);
+    if (videoRef.current) {
+        const newTime = (videoRef.current.duration / 100) * manualChange;
+        if (Number.isFinite(newTime)) {
+            videoRef.current.currentTime = newTime;
+        }
+    }
+  };
 
   return (
     <>
@@ -85,9 +181,21 @@ export const Portfolio: React.FC = () => {
                   <motion.img
                     layoutId={`project-image-${project.id}`}
                     src={project.imageUrl}
+                    onError={(e) => {
+                      if (project.fallbackImageUrl) {
+                        e.currentTarget.src = project.fallbackImageUrl;
+                      }
+                    }}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
+                  
+                  {/* Video Indicator */}
+                  {project.videoUrl && (
+                    <div className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+                      <Play size={12} className="text-white fill-white" />
+                    </div>
+                  )}
                   
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -121,7 +229,7 @@ export const Portfolio: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
+              onClick={handleCloseModal}
               className="absolute inset-0 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm cursor-pointer transition-colors duration-300"
             />
 
@@ -136,38 +244,120 @@ export const Portfolio: React.FC = () => {
             >
               {/* Close Button */}
               <button 
-                onClick={() => setSelectedProject(null)}
+                onClick={handleCloseModal}
                 className="absolute top-4 right-4 z-20 p-2 bg-black/10 dark:bg-black/40 text-black dark:text-white rounded-full hover:bg-black/20 dark:hover:bg-white dark:hover:text-black transition-colors backdrop-blur-md border border-white/10"
               >
                 <X size={24} />
               </button>
 
-              {/* Image Section */}
-              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group">
-                {selectedProject.originalImageUrl ? (
-                  /* Toggle View */
+              {/* Media Section */}
+              <div 
+                className={`w-full md:w-1/2 h-[40vh] md:h-auto relative bg-zinc-100 dark:bg-zinc-950 select-none overflow-hidden group ${
+                  !selectedProject.videoUrl || videoError ? (isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in') : ''
+                }`}
+                onMouseMove={handleImageMouseMove}
+                onClick={handleImageClick}
+                onMouseLeave={() => setIsZoomed(false)}
+              >
+                {selectedProject.videoUrl && !videoError ? (
+                   /* Video Player */
+                   <div className="w-full h-full relative group bg-black">
+                      <video 
+                        ref={videoRef}
+                        src={selectedProject.videoUrl} 
+                        poster={selectedProject.imageUrl}
+                        autoPlay 
+                        muted={isMuted}
+                        loop 
+                        playsInline
+                        onError={() => setVideoError(true)}
+                        onTimeUpdate={handleVideoTimeUpdate}
+                        onPlay={() => setIsPlaying(true)}
+                        onPause={() => setIsPlaying(false)}
+                        onClick={togglePlay}
+                        className="w-full h-full object-cover"
+                      />
+                      
+                      {/* Controls Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <button onClick={togglePlay} className="text-white hover:text-primary transition-colors focus:outline-none">
+                              {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
+                          </button>
+
+                          <input 
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={videoProgress}
+                            onChange={handleVideoSeek}
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex-grow h-1 bg-white/30 rounded-full appearance-none outline-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white hover:[&::-webkit-slider-thumb]:bg-primary transition-all"
+                          />
+
+                          <button onClick={toggleMute} className="text-white hover:text-primary transition-colors focus:outline-none">
+                              {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                          </button>
+                      </div>
+
+                      {/* Large Play Button when paused */}
+                      {!isPlaying && (
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="w-16 h-16 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
+                                <Play size={32} className="text-white fill-white ml-1" />
+                            </div>
+                        </div>
+                      )}
+                   </div>
+                ) : selectedProject.originalImageUrl ? (
+                  /* Toggle View (Before/After) */
                   <>
                     <AnimatePresence mode='wait'>
                         <motion.img
                             key={showBefore ? 'before' : 'after'}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{ opacity: 1, scale: isZoomed ? 2.5 : 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.4 }}
+                            transition={{ opacity: { duration: 0.4 }, scale: { type: "spring", stiffness: 300, damping: 30 } }}
                             src={showBefore ? selectedProject.originalImageUrl : selectedProject.imageUrl}
+                            onError={(e) => {
+                                if (selectedProject.fallbackImageUrl) {
+                                  e.currentTarget.src = selectedProject.fallbackImageUrl;
+                                }
+                            }}
+                            style={{ 
+                                transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%` 
+                            }}
                             alt={selectedProject.title}
                             className="w-full h-full object-cover"
                         />
                     </AnimatePresence>
                     
                     {/* Status Badge */}
-                    <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-mono text-white rounded border border-white/10 z-10">
+                    <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 text-xs font-mono text-white rounded border border-white/10 z-10 pointer-events-none">
                         {showBefore ? "BEFORE" : "AFTER"}
                     </div>
 
+                    {/* Zoom Hint */}
+                    <AnimatePresence>
+                      {!isZoomed && (
+                        <motion.div 
+                          initial={{ opacity: 0 }} 
+                          animate={{ opacity: 1 }} 
+                          exit={{ opacity: 0 }}
+                          className="absolute top-4 left-20 bg-black/50 backdrop-blur-md px-2 py-1 rounded text-white border border-white/10 pointer-events-none"
+                        >
+                           <ZoomIn size={14} />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
                     {/* Toggle Button */}
                     <button 
-                        onClick={() => setShowBefore(!showBefore)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowBefore(!showBefore);
+                          setIsZoomed(false);
+                        }}
                         className="absolute bottom-6 right-6 bg-white text-black px-5 py-2.5 rounded-full font-medium text-sm shadow-lg hover:bg-zinc-200 transition-all flex items-center gap-2 z-20 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
                     >
                         <Layers size={16} />
@@ -180,10 +370,23 @@ export const Portfolio: React.FC = () => {
                     <motion.img
                       layoutId={`project-image-${selectedProject.id}`}
                       src={selectedProject.imageUrl}
+                      onError={(e) => {
+                          if (selectedProject.fallbackImageUrl) {
+                            e.currentTarget.src = selectedProject.fallbackImageUrl;
+                          }
+                      }}
                       alt={selectedProject.title}
+                      animate={{ scale: isZoomed ? 2.5 : 1 }}
+                      transition={{ 
+                        scale: { type: "spring", stiffness: 300, damping: 30 },
+                        layout: { duration: 0.4 } 
+                      }}
+                      style={{ 
+                          transformOrigin: `${zoomOrigin.x}% ${zoomOrigin.y}%` 
+                      }}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden opacity-50"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden opacity-50 pointer-events-none"></div>
                   </>
                 )}
               </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, MapPin, Star } from 'lucide-react';
+import { Camera, Star } from 'lucide-react';
 import { PageState } from '../types';
 
 export const About: React.FC = () => {
@@ -17,7 +17,7 @@ export const About: React.FC = () => {
         <div className="absolute inset-0 border border-zinc-300 dark:border-zinc-800 rounded-lg rotate-3 transform translate-x-4 translate-y-4 transition-colors duration-300"></div>
         <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800 rounded-lg overflow-hidden shadow-lg">
              <img 
-              src="/farnaz.jpg" 
+              src="/asset/farnaz.jpg" 
               onError={(e) => {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80";
               }}
@@ -39,10 +39,7 @@ export const About: React.FC = () => {
         <div>
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Who I Am</h2>
           <h1 className="text-5xl font-sans font-bold mb-6 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">I'm FARNAZ</h1>
-          <div className="flex items-center gap-2 text-zinc-700 dark:text-zinc-400 mb-6">
-            <MapPin size={16} />
-            <span className="text-sm tracking-widest uppercase">Tehran, Iran</span>
-          </div>
+          
           <p className="text-zinc-800 dark:text-zinc-300 leading-relaxed text-lg transition-colors duration-300">
             My main focus is on commercial and advertising photography, helping brands showcase their identity through striking and meaningful visuals. However, my work also extends across different fields including portrait, fashion, artistic, and urban photography.
           </p>

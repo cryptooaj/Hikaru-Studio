@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, Variants, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { PageState } from '../types';
@@ -42,54 +43,73 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     setTimeout(() => setIsCapturing(false), 300);
   };
 
-  const containerVariants: Variants = {
+  const wrapperVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.3
+        delayChildren: 0.2
       }
     }
   };
 
-  const itemVariants: Variants = {
-    hidden: { y: 100, opacity: 0, skewY: 5 },
+  // Smoother, performance-friendly reveal animation
+  const textRevealVariants: Variants = {
+    hidden: { y: "110%" },
+    visible: { 
+      y: 0, 
+      transition: { 
+        duration: 1, 
+        ease: [0.22, 1, 0.36, 1] // "Apple-style" ease-out
+      }
+    }
+  };
+
+  const fadeUpVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
     visible: { 
       y: 0, 
       opacity: 1, 
-      skewY: 0,
-      transition: { type: "spring", stiffness: 50, damping: 20 }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   };
 
   return (
-    <motion.section
+    <section
       id={PageState.HOME}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
       className="h-screen w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       <div className="absolute inset-0 w-full h-full flex flex-col md:flex-row">
         
         {/* Text Section (Left) */}
         <div className="relative z-20 w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:pl-24 pointer-events-none">
-             <div className="pointer-events-auto max-w-xl pt-20 md:pt-0">
+             <motion.div 
+               variants={wrapperVariants}
+               initial="hidden"
+               animate="visible"
+               className="pointer-events-auto max-w-xl pt-20 md:pt-0"
+             >
                  {/* Title */}
                  <div className="overflow-hidden">
-                    <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-sans font-bold text-zinc-900 dark:text-zinc-100 mb-0 transition-colors duration-300 drop-shadow-2xl text-left">
+                    <motion.h1 
+                        variants={textRevealVariants} 
+                        className="text-6xl md:text-8xl lg:text-9xl font-sans font-bold text-primary mb-0 text-left leading-tight"
+                    >
                       Hikaru
                     </motion.h1>
                  </div>
                  <div className="overflow-hidden">
-                    <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-zinc-800 to-zinc-400 dark:from-white dark:to-zinc-600 transition-all duration-300 drop-shadow-2xl text-left">
+                    <motion.h1 
+                        variants={textRevealVariants} 
+                        className="text-6xl md:text-8xl lg:text-9xl font-sans font-bold text-primary text-left leading-tight"
+                    >
                       Studio
                     </motion.h1>
                  </div>
 
                  {/* Description */}
-                 <motion.div variants={itemVariants} className="mt-8 text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed text-left max-w-md backdrop-blur-sm md:backdrop-blur-0 bg-white/10 md:bg-transparent p-4 md:p-0 rounded-xl">
+                 <motion.div variants={fadeUpVariants} className="mt-8 text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed text-left max-w-md backdrop-blur-sm md:backdrop-blur-0 bg-white/10 md:bg-transparent p-4 md:p-0 rounded-xl">
                     <p>
                         <span className="font-bold text-zinc-900 dark:text-zinc-100">Graphic Designer & Photographer</span>. 
                         Specializing in visual storytelling, brand identity, and capturing the ephemeral beauty of the mundane.
@@ -97,7 +117,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  </motion.div>
 
                  {/* Buttons */}
-                 <motion.div variants={itemVariants} className="mt-10 flex gap-6 justify-start items-center">
+                 <motion.div variants={fadeUpVariants} className="mt-10 flex gap-6 justify-start items-center">
                     <button 
                         onClick={() => onNavigate(PageState.PORTFOLIO)}
                         className="group relative px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-medium transition-transform hover:scale-105 shadow-lg shadow-red-900/20"
@@ -114,12 +134,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </button>
                  </motion.div>
-             </div>
+             </motion.div>
         </div>
 
         {/* 3D Lens Section (Right on desktop, centered/bg on mobile) */}
         <div className="absolute inset-0 md:static md:w-1/2 h-full flex items-center justify-center z-10 perspective-[1200px] pointer-events-none md:pointer-events-auto overflow-visible">
              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                 className="w-full h-full flex items-center justify-center opacity-30 md:opacity-100 scale-75 md:scale-100 translate-y-20 md:translate-y-0"
                 style={{ 
                   rotateX, 
@@ -236,6 +259,6 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <Camera className="w-4 h-4 animate-pulse text-red-600" />
         Scroll to explore
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
