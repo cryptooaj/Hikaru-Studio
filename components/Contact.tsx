@@ -14,9 +14,9 @@ import emailjs from '@emailjs/browser';
 // 4. Go to Account > API Keys and get your PUBLIC_KEY.
 // 5. Paste them below.
 
-const EMAILJS_SERVICE_ID = ''; // e.g. 'service_xyz'
-const EMAILJS_TEMPLATE_ID = ''; // e.g. 'template_xyz'
-const EMAILJS_PUBLIC_KEY = ''; // e.g. 'user_xyz'
+const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
+const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
+const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
 
 export const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -40,8 +40,7 @@ export const Contact: React.FC = () => {
     const isConfigured = 
       EMAILJS_SERVICE_ID && 
       EMAILJS_TEMPLATE_ID && 
-      EMAILJS_PUBLIC_KEY && 
-      EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+      EMAILJS_PUBLIC_KEY;
 
     if (!isConfigured) {
       // DEMO MODE: Simulate sending if keys are missing
