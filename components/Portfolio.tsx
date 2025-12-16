@@ -7,7 +7,7 @@ import { ExternalLink, X, User, Calendar, Tag, Layers, Play, ZoomIn, Pause, Volu
 
 export const Portfolio: React.FC = () => {
   const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.ALL);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [_hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
   // Toggle state for Before/After
