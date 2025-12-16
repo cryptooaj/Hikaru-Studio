@@ -4,7 +4,6 @@ export enum PageState {
   PORTFOLIO = 'PORTFOLIO',
   ABOUT = 'ABOUT',
   SERVICES = 'SERVICES',
-  AI_LAB = 'AI_LAB',
   CONTACT = 'CONTACT',
 }
 
@@ -28,23 +27,6 @@ export interface Project {
   tags?: string[];
   fullDescription?: string;
   originalImageUrl?: string;
-}
-
-// Global declarations to fix TypeScript errors
-declare global {
-  interface AIStudio {
-    hasSelectedApiKey: () => Promise<boolean>;
-    openSelectKey: () => Promise<void>;
-  }
-
-  interface Window {
-    aistudio?: AIStudio;
-  }
-  
-  namespace NodeJS {
-    interface ProcessEnv {
-      API_KEY: string;
-      [key: string]: string | undefined;
-    }
-  }
+  fallbackImageUrl?: string;
+  videoUrl?: string;
 }
