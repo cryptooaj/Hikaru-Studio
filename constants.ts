@@ -68,16 +68,51 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
-    title: "Silent Hills",
-    category: ProjectCategory.ARCH_INTERIOR,
-    imageUrl: "/asset/silent-hills.jpg",
-    fallbackImageUrl: "https://picsum.photos/900/1200?grayscale&random=6",
-    description: "Landscape photography in the misty mornings.",
-    year: "2023",
-    client: "Travel Weekly",
-    tags: ["Landscape", "Nature", "Minimalism"],
-    fullDescription: "Silent Hills documents the serene, almost Ethereal atmosphere of the Scottish Highlands at dawn. The project focuses on the heavy mist that blankets the valleys, isolating trees and hills into singular subjects. It is a meditation on solitude and the overwhelming scale of nature."
+    title: "Artisan Chocolate Waffle",
+    category: ProjectCategory.CAFE_BEVERAGE,
+    imageUrl: "/cafe & beverge/DSC06694 copy.jpg",
+    description: "A high-detail food photograph created for lightbox printing, emphasizing texture, richness, and visual appetite appeal.",
+    year: "2024",
+    client: "Private Commission",
+    tags: ["Food Texture", "Lightbox Print", "Macro Photography"],
+    fullDescription: "This image was created specifically for large-format lightbox display, with a strong emphasis on texture, richness, and the appetizing qualities of the product. Captured using a Sony G-series macro lens, the photograph highlights the crisp structure of the waffle, the gloss of the chocolate drizzle, and the softness of the accompanying elements. Decorative styling and precise lighting were used to enhance depth, contrast, and color harmony across the scene. Specialized post-production refined details and tonal balance, ensuring the final image presents the product in its most appealing and mouth-watering form while maintaining a natural, high-end visual quality suitable for permanent café décor."
   },
+  {
+    id: 7,
+    title: "Enjoy Breakfast — Croissant Content Series",
+    category: ProjectCategory.CAFE_BEVERAGE,
+    imageUrl: "/public/cafe & beverge/crossaint.jpg",
+    description: "A styled food photograph created for content production, highlighting croissant variety, texture, and appetizing presentation.",
+    year: "2024",
+    client: "Social Media Content",
+    tags: ["Content Creation", "Food Styling", "Product Variety"],
+    fullDescription: "This image was produced for digital content creation, focusing on presenting a variety of croissant items in an inviting and visually balanced composition. Captured using a Sony fixed focal length lens, the scene was styled decoratively with precise lighting to enhance texture, color harmony, and depth. Particular attention was given to showcasing the flaky layers of the croissants, the richness of the chocolate drizzle, and the overall sense of freshness and taste appeal. Professional post-production refined contrast and tonal balance, ensuring the final image effectively communicates quality, variety, and a warm breakfast atmosphere suitable for social media and promotional use."
+  },
+  {
+    id: 8,
+    title: "Cool Down — Modern x Traditional Beverage Visual",
+    category: ProjectCategory.CAFE_BEVERAGE,
+    imageUrl: "/cafe & beverge/watermelon.jpg",
+    description: "A vibrant beverage visual blending modern composition with traditional decorative elements, created for digital content production.",
+    year: "2024",
+    client: "Parsian Cafe",
+    tags: ["Beverage Photography", "Modern & Traditional Fusion", "Natural Light"],
+    fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
+  },
+  {
+    id: 9,
+    title: "Minimal Product Visual — Bag Campaign",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/1.jpg",
+    fallbackImageUrl: "commerical photography/New folder/1.jpg",
+    videoUrl: "commerical photography/New folder/balck bag.mp4",
+    description: "A minimalist product visual created with precise lighting, texture emphasis, and typography integration.",
+    year: "2024",
+    client: "CHRAIS & KCITH",
+    tags: ["Product Photography", "Minimal Style", "Typography Design"],
+    fullDescription: "This product visual was created as part of a selected brand campaign, with both still and motion versions produced. The client’s request focused on presenting the product in a clean, minimal style while emphasizing material texture through controlled lighting. Typography was incorporated to complement the visual identity of the product, designed using Canva and integrated subtly to maintain a refined and modern aesthetic. Professional lighting and post-production were applied to ensure clarity, balance, and visual impact. A motion version of this project is also available and can be viewed by contacting Hikaru Studio."
+  },
+
   {
     id: 7,
     title: "Culinary Arts",
@@ -89,18 +124,6 @@ export const PROJECTS: Project[] = [
     client: "Michelin Starred",
     tags: ["Food", "Fine Dining", "Texture"],
     fullDescription: "A series focused on the intricate details of plating and ingredients. Using dramatic lighting to highlight textures and colors, these images treat food as sculpture."
-  },
-  {
-    id: 8,
-    title: "Minimalist Coffee",
-    category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "/asset/minimalist-coffee.jpg",
-    fallbackImageUrl: "https://picsum.photos/800/1200?random=8",
-    description: "Packaging and identity for a boutique roastery.",
-    year: "2023",
-    client: "Bean & Leaf",
-    tags: ["Packaging", "Illustration", "Eco"],
-    fullDescription: "Bean & Leaf required a packaging solution that was as organic as their product. We utilized recycled materials and soy-based inks. The design features hand-drawn botanical illustrations specific to the region of the coffee bean, paired with a clean, serif typeface to evoke a sense of heritage and quality."
   },
     {
     id: 9,
