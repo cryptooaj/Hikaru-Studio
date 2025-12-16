@@ -101,5 +101,18 @@ export const PROJECTS: Project[] = [
     client: "Bean & Leaf",
     tags: ["Packaging", "Illustration", "Eco"],
     fullDescription: "Bean & Leaf required a packaging solution that was as organic as their product. We utilized recycled materials and soy-based inks. The design features hand-drawn botanical illustrations specific to the region of the coffee bean, paired with a clean, serif typeface to evoke a sense of heritage and quality."
-  }
+  },
+    {
+    id: 9,
+    title: "Neon Dreams",
+    category: ProjectCategory.PORTRAIT,
+    imageUrl: "/asset/neon-dreams.jpg",
+    fallbackImageUrl: "https://picsum.photos/800/800?random=3",
+    videoUrl: "https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4",
+    description: "Night photography series exploring color theory.",
+    year: "2024",
+    client: "Art Gallery of Ontario",
+    tags: ["Night", "Color", "Long Exposure"],
+    fullDescription: "Neon Dreams explores the artificial luminescence of the city after dark. Utilizing long exposure techniques, this series transforms busy intersections and neon signages into fluid rivers of light. It challenges the viewer's perception of time and space within the urban landscape."
+  },
 ];
