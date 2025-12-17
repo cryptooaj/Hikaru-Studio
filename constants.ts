@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     client: "Café Lune",
     tags: ["Product Photography", "Print Quality", "LigTexture Focushting","Décor"],
     fullDescription: "This commission for Café Lune involved capturing the essence of their handcrafted 'home cake' offerings. The goal was not merely documentation, but the creation of striking, evocative images suitable for high-resolution, large-format printing to be used as permanent décor within the café.The project required a meticulous technical approach to translate the delicate details of a homemade product into powerful art. We focused on specialized lighting and editing to highlight the texture of the cake—the rich, moist crumb and the structural detail of the chocolate shavings—ensuring every detail resonated with quality. By employing a dramatic, controlled setup, the final prints serve as a compelling visual signature for Café Lune, celebrating the artistry of their baking."
-  },  
+  },
   {
     id: 2,
     title: "Artisan Chemex Brew",

@@ -2,21 +2,6 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { PageState } from '../types';
-import emailjs from '@emailjs/browser';
-
-// ----------------------------------------------------------------------
-// CONFIGURATION
-// ----------------------------------------------------------------------
-// INSTRUCTIONS:
-// 1. Create an account at https://www.emailjs.com/
-// 2. Create a new Email Service (e.g., Gmail) and get the SERVICE_ID.
-// 3. Create an Email Template and get the TEMPLATE_ID.
-// 4. Go to Account > API Keys and get your PUBLIC_KEY.
-// 5. Paste them below.
-
-const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
-const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
-const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
 
 export const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -31,55 +16,8 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.current) return;
-
-    setIsSending(true);
-    setStatus(null);
-
-    // CHECK: Are keys configured?
-    const isConfigured = 
-      EMAILJS_SERVICE_ID && 
-      EMAILJS_TEMPLATE_ID && 
-      EMAILJS_PUBLIC_KEY;
-
-    if (!isConfigured) {
-      // DEMO MODE: Simulate sending if keys are missing
-      console.warn("EmailJS keys missing. Running in DEMO mode. (Check Contact.tsx to configure)");
-      
-      setTimeout(() => {
-        setIsSending(false);
-        setStatus({
-          type: 'success',
-          message: 'Message sent! (Demo Mode: No email was actually sent)'
-        });
-        setFormState({ user_name: '', user_email: '', message: '' });
-      }, 2000);
-      return;
-    }
-
-    // REAL MODE: Send via EmailJS
-    try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        form.current,
-        { publicKey: EMAILJS_PUBLIC_KEY }
-      );
-      
-      setStatus({
-        type: 'success',
-        message: 'Thank you! Your message has been sent successfully.'
-      });
-      setFormState({ user_name: '', user_email: '', message: '' });
-    } catch (error) {
-      console.error('EmailJS Failed:', error);
-      setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again or email directly.'
-      });
-    } finally {
-      setIsSending(false);
-    }
+    alert("Thank you for reaching out! I'll get back to you soon.");
+    setFormState({ name: '', email: '', message: '' });
   };
 
   return (
@@ -93,14 +31,27 @@ export const Contact: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-16">
         {/* Info */}
         <div className="w-full lg:w-1/2 space-y-8">
-           <div>
-             <h2 className="text-6xl font-sans font-bold mb-6 text-zinc-900 dark:text-white">Let's Connect</h2>
-             <p className="text-zinc-700 dark:text-zinc-400 text-lg">
-               Ready to elevate your brand's visual identity? Reach out to discuss your next project.
-             </p>
+           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-8">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-primary shadow-xl shadow-primary/10 flex-shrink-0"
+              >
+                <img 
+                  src={avatarSrc} 
+                  onError={(e) => e.currentTarget.src = fallbackAvatarSrc}
+                  alt="Farnaz Hosseini" 
+                  className="w-full h-full object-cover" 
+                />
+              </motion.div>
+              <div>
+                <h2 className="text-6xl font-sans font-bold text-primary">Let's Connect</h2>
+                <p className="text-zinc-700 dark:text-zinc-400 text-lg mt-2">
+                  Ready to elevate your brand's visual identity? Reach out to discuss your next project.
+                </p>
+              </div>
            </div>
 
-           <div className="space-y-6 py-8">
+           <div className="space-y-6 py-4">
              <a href="mailto:hikarustudio.photo@gmail.com" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Mail className="w-5 h-5" />
@@ -127,18 +78,18 @@ export const Contact: React.FC = () => {
              <p className="text-sm text-zinc-600 dark:text-zinc-500 mb-6 uppercase tracking-wider">Follow & Chat</p>
              <div className="flex flex-wrap gap-4">
                <a href="https://www.linkedin.com/in/farnaz-hoseini-140ba3330" target="_blank" rel="noopener noreferrer" 
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
-                 <Linkedin size={18} />
+                  className="group flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-[#0077b5] dark:hover:bg-[#0077b5] transition-all">
+                 <Linkedin size={18} className="text-[#0077b5] dark:text-[#0077b5] group-hover:text-white" />
                  <span>LinkedIn</span>
                </a>
                <a href="http://wa.me/+989123855908" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
-                 <MessageCircle size={18} />
+                  className="group flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-[#25D366] dark:hover:bg-[#25D366] transition-all">
+                 <MessageCircle size={18} className="text-[#25D366] dark:text-[#25D366] group-hover:text-white" />
                  <span>WhatsApp</span>
                </a>
                <a href="http://t.me/ifarnazhoseini" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-primary dark:hover:bg-zinc-800 transition-all">
-                 <Send size={18} />
+                  className="group flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-[#0088cc] dark:hover:bg-[#0088cc] transition-all">
+                 <Send size={18} className="text-[#0088cc] dark:text-[#0088cc] group-hover:text-white" />
                  <span>Telegram</span>
                </a>
              </div>
