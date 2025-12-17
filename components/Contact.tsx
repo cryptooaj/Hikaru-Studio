@@ -2,11 +2,6 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { PageState } from '../types';
-import emailjs from '@emailjs/browser';
-
-const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
-const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
-const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
 
 export const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -21,54 +16,9 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.current) return;
-
-    setIsSending(true);
-    setStatus(null);
-
-    const isConfigured = 
-      EMAILJS_SERVICE_ID && 
-      EMAILJS_TEMPLATE_ID && 
-      EMAILJS_PUBLIC_KEY;
-
-    if (!isConfigured) {
-      setTimeout(() => {
-        setIsSending(false);
-        setStatus({
-          type: 'success',
-          message: 'Message sent! (Demo Mode: No email was actually sent)'
-        });
-        setFormState({ user_name: '', user_email: '', message: '' });
-      }, 2000);
-      return;
-    }
-
-    try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        form.current,
-        { publicKey: EMAILJS_PUBLIC_KEY }
-      );
-      
-      setStatus({
-        type: 'success',
-        message: 'Thank you! Your message has been sent successfully.'
-      });
-      setFormState({ user_name: '', user_email: '', message: '' });
-    } catch (error) {
-      console.error('EmailJS Failed:', error);
-      setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again or email directly.'
-      });
-    } finally {
-      setIsSending(false);
-    }
+    alert("Thank you for reaching out! I'll get back to you soon.");
+    setFormState({ name: '', email: '', message: '' });
   };
-
-  const avatarSrc = "/asset/farnaz.jpg";
-  const fallbackAvatarSrc = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80&w=300&h=300";
 
   return (
     <motion.section

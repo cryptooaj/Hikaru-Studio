@@ -45,6 +45,7 @@ export const Portfolio: React.FC = () => {
     } else {
       document.body.style.overflow = 'unset';
       setIsZoomed(false);
+      setIsZoomed(false);
     }
     return () => {
       document.body.style.overflow = 'unset';
