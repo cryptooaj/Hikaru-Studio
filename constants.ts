@@ -10,6 +10,7 @@ export const NAV_ITEMS = [
 ];
 
 export const PROJECTS: Project[] = [
+  //CAFE_BEVERAGE Category Projects
   {
     id: 1,
     title: "Café Lune: The Artisan Cake Series",
@@ -99,8 +100,12 @@ export const PROJECTS: Project[] = [
     tags: ["Beverage Photography", "Modern & Traditional Fusion", "Natural Light"],
     fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
   },
+
+
+  //PRODUCT Category Projects
+
   {
-    id: 9,
+    id: 200,
     title: "Minimal Product Visual — Bag Campaign",
     category: ProjectCategory.PRODUCT,
     imageUrl: "commerical photography/New folder/1.jpg",
@@ -112,30 +117,142 @@ export const PROJECTS: Project[] = [
     tags: ["Product Photography", "Minimal Style", "Typography Design"],
     fullDescription: "This product visual was created as part of a selected brand campaign, with both still and motion versions produced. The client’s request focused on presenting the product in a clean, minimal style while emphasizing material texture through controlled lighting. Typography was incorporated to complement the visual identity of the product, designed using Canva and integrated subtly to maintain a refined and modern aesthetic. Professional lighting and post-production were applied to ensure clarity, balance, and visual impact. A motion version of this project is also available and can be viewed by contacting Hikaru Studio."
   },
+    {
+    id: 201,
+    title: "Minimal Motion Teaser — Bag Campaign",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/red bag.jpg",
+    fallbackImageUrl: "commerical photography/New folder/red bag.jpg",
+    videoUrl: "commerical photography/New folder/sequence 01.mp4",
+    description: "A minimalist motion teaser created to highlight texture, form, and brand identity through precise lighting and typography.",
+    year: "2024",
+    client: "CHRAIS & KCITH",
+    tags: ["Motion Teaser", "Minimal Product", "Advertising Campaign"],
+    fullDescription: "This project was produced as a motion advertising teaser for a selected brand, with the primary focus on presenting the bag in a clean, minimal visual language. The client requested a strong emphasis on material texture, achieved through precise lighting and controlled highlights. Typography was integrated to support the promotional message and brand identity, designed using Canva and applied subtly within the motion sequence. The overall approach combines simplicity, clarity, and visual rhythm to create an effective and refined product teaser. A motion version of this project is available and can be viewed by contacting Hikaru Studio."
+  },
+  {
+    id: 202,
+    title: "Precision & Detail — Staedtler Product Visual",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/blue perncils.jpg",
+    description: "A high-detail product photograph created for international presentation, emphasizing precision, craftsmanship, and artistic lighting.",
+    year: "2024",
+    client: "Staedtler",
+    tags: ["Product Detail", "Artistic Lighting", "International Campaign"],
+    fullDescription: "This photograph was created for Staedtler as part of a visual presentation intended for display in multiple cities across Europe. The client’s primary request was to highlight fine details and present the product through a distinctive, artistic visual approach. The image was captured using a Canon R6 Mark II paired with a 24mm fixed lens, allowing for clarity, depth, and a strong compositional perspective. Precise, professional lighting was applied to enhance texture, form, and material quality, while advanced post-production refined contrast, color balance, and overall visual impact. The final image delivers a refined, high-end presentation suitable for international exhibition and brand communication."
+  },
+  {
+    id: 203,
+    title: "Crafted Precision — Staedtler Product Visual",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/pens.jpg",
+    description: "An artistic, high-detail product photograph created for international presentation across multiple European cities.",
+    year: "2024",
+    client: "Staedtler",
+    tags: ["Product Details", "Artistic Lighting", "European Exhibition"],
+    fullDescription: "This photograph was created for Staedtler as part of a visual presentation intended for display in multiple cities across Europe. The client’s request focused on showcasing fine details and delivering a distinctive, high-end image suitable for international exhibition. The image was captured using a Canon R6 Mark II paired with an 85mm fixed lens, allowing for precise detail rendering, controlled depth of field, and refined perspective. Professional, carefully controlled lighting was used to emphasize texture, form, and material quality. Advanced post-production further refined contrast, tonal balance, and visual clarity, resulting in an artistic yet precise product presentation aligned with Staedtler’s brand values."
+  },
+  {
+    id: 204,
+    title: "Smart Ring — Product Introduction Visual",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/smart ring.jpg",
+    description: "A refined product introduction visual for a smart ring, combining professional lighting, design, and typography.",
+    year: "2024",
+    client: "International Tech Client — China",
+    tags: ["Smart Technology", "Product Introduction", "Typography Design"],
+    fullDescription: "This image was created as part of a product introduction project for an international client in China, focusing on presenting a smart ring through a clean and modern visual language. The photograph was captured using a fixed focal length lens, supported by precise and professional lighting to highlight form, material, and technological elegance. In addition to photography, the image was fully designed with integrated typography to support product communication and brand messaging. Advanced post-production ensured color accuracy, tonal balance, and a polished final presentation suitable for technology-focused marketing and international brand platforms."
+  },
+  {
+    id: 205,
+    title: "Handcrafted Soap — Decorative Product Visual",
+    category: ProjectCategory.PRODUCT,
+    imageUrl: "commerical photography/New folder/soap.jpg",
+    description: "A decorative product photograph created to enhance the beauty and artisanal character of a handcrafted soap.",
+    year: "2024",
+    client: "Turkish Artisan Brand",
+    tags: ["Handmade Product", "Decorative Styling", "Typography Design"],
+    fullDescription: "This image was created for a Turkish handcrafted soap brand, with the client’s goal focused on presenting the product in a more decorative and visually refined manner. The photograph was captured using a fixed focal length lens and supported by precise, controlled lighting to enhance texture, form, and surface details. Typography was integrated to complement the artisanal identity of the product, while professional color and light correction ensured tonal balance and visual harmony. The final result emphasizes the soap’s handmade quality and aesthetic appeal, delivering a clean yet artistic presentation suitable for brand storytelling and product promotion."
+  },
+  {
+    id: 12,
+    title: "Garlic Bread — Food Content Visual",
+    category: ProjectCategory.CAFE_BEVERAGE,
+    imageUrl: "/public/cafe & beverge/garlic_bread.jpg",
+    description: "A detailed food photograph created for Instagram content, focusing on texture, lighting, and appetizing presentation.",
+    year: "2024",
+    client: "Food & Beverage Brand",
+    tags: ["Food Photography", "Instagram Content", "Detail Focus"],
+    fullDescription: "This image was created to introduce a garlic bread dish for social media content, with the client requesting a highly detailed photograph that enhances both the visual appeal and the sense of taste. The shot was captured using a Sony camera paired with a fixed focal length lens, allowing for sharp detail and controlled depth of field. Precise lighting and careful food arrangement were used to highlight texture, color, and freshness. Professional post-production refined contrast, color balance, and clarity, resulting in an inviting and mouth-watering image designed specifically for Instagram content creation."
+},
+
+
+  //FOOD Category Projects
 
   {
-    id: 7,
-    title: "Culinary Arts",
+    id:300,
+    title: "Garlic Bread — Food Content Visual",
     category: ProjectCategory.FOOD,
-    imageUrl: "/asset/culinary-arts.jpg",
-    fallbackImageUrl: "https://picsum.photos/1200/900?random=7",
-    description: "High-end cuisine photography.",
+    imageUrl: "food photography/garlic bread.jpg",
+    description: "A detailed food photograph created for Instagram content, focusing on texture, lighting, and appetizing presentation.",
     year: "2024",
-    client: "Michelin Starred",
-    tags: ["Food", "Fine Dining", "Texture"],
-    fullDescription: "A series focused on the intricate details of plating and ingredients. Using dramatic lighting to highlight textures and colors, these images treat food as sculpture."
+    client: "Food & Beverage Brand",
+    tags: ["Food Photography", "Instagram Content", "Detail Focus"],
+    fullDescription: "This image was created to introduce a garlic bread dish for social media content, with the client requesting a highly detailed photograph that enhances both the visual appeal and the sense of taste. The shot was captured using a Sony camera paired with a fixed focal length lens, allowing for sharp detail and controlled depth of field. Precise lighting and careful food arrangement were used to highlight texture, color, and freshness. Professional post-production refined contrast, color balance, and clarity, resulting in an inviting and mouth-watering image designed specifically for Instagram content creation."
   },
-    {
-    id: 9,
-    title: "Neon Dreams",
-    category: ProjectCategory.PORTRAIT,
-    imageUrl: "/asset/neon-dreams.jpg",
-    fallbackImageUrl: "https://picsum.photos/800/800?random=3",
-    videoUrl: "https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4",
-    description: "Night photography series exploring color theory.",
+  {
+    id: 301,
+    title: "Breakfast Selection — Visual Content",
+    category: ProjectCategory.FOOD,
+    imageUrl: "food photography/garlic.jpg",
+    description: "A detailed breakfast photograph created for Instagram content and print, emphasizing texture, lighting, and appetizing presentation.",
     year: "2024",
-    client: "Art Gallery of Ontario",
-    tags: ["Night", "Color", "Long Exposure"],
-    fullDescription: "Neon Dreams explores the artificial luminescence of the city after dark. Utilizing long exposure techniques, this series transforms busy intersections and neon signages into fluid rivers of light. It challenges the viewer's perception of time and space within the urban landscape."
-  },
+    client: "Food & Beverage Brand",
+    tags: ["Breakfast Photography", "Instagram Content", "Print Ready"],
+    fullDescription: "This image was created to introduce a breakfast selection, with the client requesting a visually rich photograph that highlights details, textures, and the overall appetizing quality of the meal. The image was captured using a Sony camera with a fixed focal length lens, allowing for clarity and controlled depth of field. Precise lighting and careful styling were applied to enhance freshness, color harmony, and composition. Professional post-production refined tonal balance, contrast, and color accuracy, ensuring the final image is suitable for both Instagram content creation and print presentation."
+},
+{
+    id: 302,
+    title: "Calzone — Poster-Ready Food Visual",
+    category: ProjectCategory.FOOD,
+    imageUrl: "food photography/calzone.jpg",
+    description: "A detailed food photograph created for Instagram content and poster use, emphasizing texture, lighting, and visual appetite appeal.",
+    year: "2024",
+    client: "Food & Beverage Brand",
+    tags: ["Food Photography", "Poster Design", "Instagram Content"],
+    fullDescription: "This image was created to introduce a calzone dish, with the client requesting a highly detailed photograph that enhances the food’s visual appeal and sense of taste. The photograph was captured using a Sony camera paired with a fixed focal length lens, ensuring clarity and controlled depth of field. Precise lighting and thoughtful food styling were used to highlight texture, crust detail, and freshness. Special attention was given during post-production to ensure the image was suitable for poster use, with refined contrast, color balance, and composition, while also remaining optimized for Instagram content."
+},
+{
+    id: 303,
+    title: "Caesar Salad — Texture Focused Visual",
+    category: ProjectCategory.FOOD,
+    imageUrl: "food photography/salad sezar.jpg",
+    description: "A high-quality food photograph created to highlight texture, freshness, and refined lighting.",
+    year: "2024",
+    client: "Food & Beverage Brand",
+    tags: ["Food Texture", "High-Quality Image", "Professional Lighting"],
+    fullDescription: "This image was created to introduce a Caesar salad, with a strong focus on highlighting the texture of the ingredients and presenting the dish in a visually refined and appetizing way. The client requested a high-quality photograph with precise lighting and careful attention to detail. Controlled lighting was used to enhance freshness, contrast, and depth, while professional post-production refined color accuracy, tonal balance, and clarity. The final result delivers a clean, detailed, and premium food visual suitable for brand presentation and promotional use."
+},
+{
+    id: 304,
+    title: "Signature Burger — Poster-Ready Food Visual",
+    category: ProjectCategory.FOOD,
+    imageUrl: "food photography/burger.jpg",
+    description: "A detailed burger photograph created for poster use, emphasizing texture, lighting, and strong visual appetite appeal.",
+    year: "2024",
+    client: "Food & Beverage Brand",
+    tags: ["Burger Photography", "Poster Design", "Food Detail"],
+    fullDescription: "This image was created to introduce a burger dish, with the client requesting a visually powerful photograph that highlights details, textures, and the overall sense of taste. The photograph was captured using a Sony camera paired with a fixed focal length lens, ensuring sharp detail and controlled depth of field. Precise lighting and careful food styling were used to enhance the layers, textures, and richness of the ingredients. Special attention was given during post-production to refine contrast, color balance, and composition, making the image well-suited for poster display while maintaining a clean and appetizing presentation."
+},
+{
+    id: 305,
+    title: "Pasta Dish — Multi-Platform Food Visual",
+    category: ProjectCategory.FOOD,
+    imageUrl: "food photography/pasta.jpg",
+    description: "A detailed pasta photograph created for Instagram, website content, and poster use, emphasizing texture, lighting, and visual appetite appeal.",
+    year: "2024",
+    client: "Food & Beverage Brand",
+    tags: ["Pasta Photography", "Poster Design", "Digital Content"],
+    fullDescription: "This image was created to introduce a pasta dish, with the client requesting a visually rich photograph that highlights details, textures, and the overall sense of taste. The image was captured using a Sony camera paired with a fixed focal length lens, ensuring sharp detail and controlled depth of field. Precise lighting and thoughtful food styling were applied to enhance freshness, depth, and color harmony. During post-production, special attention was given to refining contrast, tonal balance, and composition, ensuring the image is optimized for Instagram content, website presentation, and poster-ready use."
+}
 ];
