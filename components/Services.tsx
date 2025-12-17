@@ -66,7 +66,7 @@ export const Services: React.FC = () => {
           className="mb-20 text-center md:text-left"
         >
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Our Services</h2>
-          <h1 className="text-4xl md:text-6xl font-sans font-bold text-zinc-900 dark:text-zinc-100 mb-6">What We Offer</h1>
+          <h1 className="text-4xl md:text-6xl font-sans font-bold text-primary mb-6">What We Offer</h1>
           <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-2xl italic font-sans opacity-90 dark:opacity-80">
             "Almost before we knew it, we had left the ground. A shining crescent far beneath the flying vessel."
           </p>

@@ -153,7 +153,7 @@ export const Portfolio: React.FC = () => {
       >
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 text-zinc-900 dark:text-zinc-100 whitespace-nowrap">Selected Works</h2>
+            <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 text-primary whitespace-nowrap">Selected Works</h2>
             <p className="text-zinc-600 dark:text-zinc-400 max-w-md">
               A curated collection of projects exploring the intersection of design, technology, and human emotion.
             </p>

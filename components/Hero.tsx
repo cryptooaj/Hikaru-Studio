@@ -111,8 +111,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  {/* Description */}
                  <motion.div variants={fadeUpVariants} className="mt-8 text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed text-left max-w-md backdrop-blur-sm md:backdrop-blur-0 bg-white/10 md:bg-transparent p-4 md:p-0 rounded-xl">
                     <p>
-                        <span className="font-bold text-zinc-900 dark:text-zinc-100">Graphic Designer & Photographer</span>. 
-                        Specializing in visual storytelling, brand identity, and capturing the ephemeral beauty of the mundane.
+                        <span className="font-bold text-zinc-900 dark:text-zinc-100">Visual Storyteller & Brand Designer</span>. 
+                        From meticulous concepts to professional lenses—creating immersive experiences that define the future of your brand.
                     </p>
                  </motion.div>
 
