@@ -38,10 +38,10 @@ export const About: React.FC = () => {
       <div className="w-full md:w-1/2 space-y-10">
         <div>
           <h2 className="text-sm uppercase tracking-widest text-zinc-500 mb-2">Who I Am</h2>
-          <h1 className="text-5xl font-sans font-bold mb-6 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">I'm FARNAZ</h1>
+          <h1 className="text-5xl font-sans font-bold mb-6 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">I'm <span className="text-primary">FARNAZ</span></h1>
           
           <p className="text-zinc-800 dark:text-zinc-300 leading-relaxed text-lg transition-colors duration-300">
-            My main focus is on commercial and advertising photography, helping brands showcase their identity through striking and meaningful visuals. However, my work also extends across different fields including portrait, fashion, artistic, and urban photography.
+            My main focus is on <span className="font-bold">commercial</span> and <span className="font-bold">advertising photography</span>, helping brands showcase their identity through striking and meaningful visuals. However, my work also extends across different fields including portrait, fashion, artistic, and urban photography.
           </p>
           <p className="text-zinc-700 dark:text-zinc-400 leading-relaxed text-lg mt-4 transition-colors duration-300">
             At Studio Hikaru, photography is more than just capturing a moment it’s about creating an experience that stays with the viewer long after the image is seen.
