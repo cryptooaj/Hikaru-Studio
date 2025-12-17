@@ -10,8 +10,8 @@ export enum PageState {
 export enum ProjectCategory {
   PRODUCT = 'Commercial/Product',
   CAFE_BEVERAGE = 'Cafe/Beverage',
-  EXHIBITION = 'Exhibition/Event',
   FOOD = 'Food photography',
+  EXHIBITION = 'Exhibition/Event',
   ANIMAL = 'Cats Photography'
 }
 
