@@ -174,17 +174,6 @@ export const PROJECTS: Project[] = [
     tags: ["Handmade Product", "Decorative Styling", "Typography Design"],
     fullDescription: "This image was created for a Turkish handcrafted soap brand, with the client’s goal focused on presenting the product in a more decorative and visually refined manner. The photograph was captured using a fixed focal length lens and supported by precise, controlled lighting to enhance texture, form, and surface details. Typography was integrated to complement the artisanal identity of the product, while professional color and light correction ensured tonal balance and visual harmony. The final result emphasizes the soap’s handmade quality and aesthetic appeal, delivering a clean yet artistic presentation suitable for brand storytelling and product promotion."
   },
-  {
-    id: 12,
-    title: "Garlic Bread — Food Content Visual",
-    category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "/public/cafe & beverge/garlic_bread.jpg",
-    description: "A detailed food photograph created for Instagram content, focusing on texture, lighting, and appetizing presentation.",
-    year: "2024",
-    client: "Food & Beverage Brand",
-    tags: ["Food Photography", "Instagram Content", "Detail Focus"],
-    fullDescription: "This image was created to introduce a garlic bread dish for social media content, with the client requesting a highly detailed photograph that enhances both the visual appeal and the sense of taste. The shot was captured using a Sony camera paired with a fixed focal length lens, allowing for sharp detail and controlled depth of field. Precise lighting and careful food arrangement were used to highlight texture, color, and freshness. Professional post-production refined contrast, color balance, and clarity, resulting in an inviting and mouth-watering image designed specifically for Instagram content creation."
-},
 
 
   //FOOD Category Projects
