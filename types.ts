@@ -8,6 +8,7 @@ export enum PageState {
 }
 
 export enum ProjectCategory {
+  ALL = 'All',
   PRODUCT = 'Commercial/Product',
   CAFE_BEVERAGE = 'Cafe/Beverage',
   FOOD = 'Food photography',
