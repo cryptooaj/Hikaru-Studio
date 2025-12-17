@@ -4,16 +4,6 @@ import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle
 import { PageState } from '../types';
 import emailjs from '@emailjs/browser';
 
-// ----------------------------------------------------------------------
-// CONFIGURATION
-// ----------------------------------------------------------------------
-// INSTRUCTIONS:
-// 1. Create an account at https://www.emailjs.com/
-// 2. Create a new Email Service (e.g., Gmail) and get the SERVICE_ID.
-// 3. Create an Email Template and get the TEMPLATE_ID.
-// 4. Go to Account > API Keys and get your PUBLIC_KEY.
-// 5. Paste them below.
-
 const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
 const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
 const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
@@ -36,16 +26,12 @@ export const Contact: React.FC = () => {
     setIsSending(true);
     setStatus(null);
 
-    // CHECK: Are keys configured?
     const isConfigured = 
       EMAILJS_SERVICE_ID && 
       EMAILJS_TEMPLATE_ID && 
       EMAILJS_PUBLIC_KEY;
 
     if (!isConfigured) {
-      // DEMO MODE: Simulate sending if keys are missing
-      console.warn("EmailJS keys missing. Running in DEMO mode. (Check Contact.tsx to configure)");
-      
       setTimeout(() => {
         setIsSending(false);
         setStatus({
@@ -57,7 +43,6 @@ export const Contact: React.FC = () => {
       return;
     }
 
-    // REAL MODE: Send via EmailJS
     try {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
@@ -82,6 +67,9 @@ export const Contact: React.FC = () => {
     }
   };
 
+  const avatarSrc = "/asset/farnaz.jpg";
+  const fallbackAvatarSrc = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80&w=300&h=300";
+
   return (
     <motion.section
       id={PageState.CONTACT}
@@ -93,14 +81,27 @@ export const Contact: React.FC = () => {
       <div className="flex flex-col lg:flex-row gap-16">
         {/* Info */}
         <div className="w-full lg:w-1/2 space-y-8">
-           <div>
-             <h2 className="text-6xl font-sans font-bold mb-6 text-primary">Let's Connect</h2>
-             <p className="text-zinc-700 dark:text-zinc-400 text-lg">
-               Ready to elevate your brand's visual identity? Reach out to discuss your next project.
-             </p>
+           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-8">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-primary shadow-xl shadow-primary/10 flex-shrink-0"
+              >
+                <img 
+                  src={avatarSrc} 
+                  onError={(e) => e.currentTarget.src = fallbackAvatarSrc}
+                  alt="Farnaz Hosseini" 
+                  className="w-full h-full object-cover" 
+                />
+              </motion.div>
+              <div>
+                <h2 className="text-6xl font-sans font-bold text-primary">Let's Connect</h2>
+                <p className="text-zinc-700 dark:text-zinc-400 text-lg mt-2">
+                  Ready to elevate your brand's visual identity? Reach out to discuss your next project.
+                </p>
+              </div>
            </div>
 
-           <div className="space-y-6 py-8">
+           <div className="space-y-6 py-4">
              <a href="mailto:hikarustudio.photo@gmail.com" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Mail className="w-5 h-5" />

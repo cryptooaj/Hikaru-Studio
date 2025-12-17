@@ -19,6 +19,9 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
     setIsMobileMenuOpen(false);
   };
 
+  const avatarSrc = "/asset/farnaz.jpg";
+  const fallbackAvatarSrc = "https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80&w=150&h=150";
+
   return (
     <>
         <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-md transition-colors duration-300 border-b border-zinc-200 dark:border-zinc-800/50">
@@ -26,10 +29,20 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-xl font-sans font-bold cursor-pointer text-zinc-900 dark:text-white tracking-tight z-50"
+            className="flex items-center gap-3 cursor-pointer z-50 group"
             onClick={() => onNavigate(PageState.HOME)}
         >
-            Hikaru Studio
+            <div className="w-9 h-9 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 group-hover:border-primary transition-colors duration-300 ring-2 ring-transparent group-hover:ring-primary/20">
+              <img 
+                src={avatarSrc} 
+                onError={(e) => e.currentTarget.src = fallbackAvatarSrc}
+                alt="Farnaz" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
+              />
+            </div>
+            <span className="text-xl font-sans font-bold text-zinc-900 dark:text-white tracking-tight">
+              Hikaru Studio
+            </span>
         </motion.div>
 
         {/* Desktop/Tablet Menu */}
@@ -99,7 +112,17 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
                     className="fixed inset-0 z-[60] bg-zinc-50 dark:bg-zinc-950 flex flex-col p-8 md:hidden"
                 >
                     <div className="flex justify-between items-center mb-16">
-                        <span className="text-xl font-bold font-sans text-zinc-900 dark:text-white">Hikaru Studio</span>
+                        <div className="flex items-center gap-3">
+                           <div className="w-8 h-8 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
+                             <img 
+                                src={avatarSrc} 
+                                onError={(e) => e.currentTarget.src = fallbackAvatarSrc}
+                                alt="Farnaz" 
+                                className="w-full h-full object-cover" 
+                              />
+                           </div>
+                           <span className="text-xl font-bold font-sans text-zinc-900 dark:text-white">Hikaru Studio</span>
+                        </div>
                         <button 
                             onClick={() => setIsMobileMenuOpen(false)}
                             className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white"
