@@ -68,8 +68,9 @@ export const Contact: React.FC = () => {
     }
   };
 
-  const contactHeroSrc = "/asset/contact-hero.jpg";
-  const fallbackHeroSrc = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200";
+  // The hero image for the contact section (the one provided by the user)
+  const contactHeroSrc = "/IMG_7492.JPG";
+  const fallbackHeroSrc = "/IMG_7491.JPG";
 
   return (
     <motion.section
