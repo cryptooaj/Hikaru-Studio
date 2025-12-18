@@ -53,11 +53,11 @@ export const Services: React.FC = () => {
   ];
 
   return (
-    <section id={PageState.SERVICES} className="min-h-screen w-full py-32 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden transition-colors duration-300">
+    <section id={PageState.SERVICES} className="min-h-screen w-full py-32 px-6 md:px-12 lg:px-24 bg-zinc-50 dark:bg-zinc-950 relative overflow-hidden transition-colors duration-300">
       {/* Decorative Background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 dark:bg-blue-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -77,7 +77,7 @@ export const Contact: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="min-h-screen w-full pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-between bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
+      className="min-h-screen w-full pt-32 pb-12 px-6 md:px-12 lg:px-24 flex flex-col justify-between bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       <div className="flex flex-col lg:flex-row gap-16">
         {/* Info Column */}

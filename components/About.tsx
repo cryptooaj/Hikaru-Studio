@@ -10,7 +10,7 @@ export const About: React.FC = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      className="min-h-screen w-full py-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
+      className="min-h-screen w-full py-32 px-6 md:px-12 lg:px-24 flex flex-col md:flex-row gap-16 items-center bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       {/* Image Side */}
       <div className="w-full md:w-1/2 h-[600px] relative">
