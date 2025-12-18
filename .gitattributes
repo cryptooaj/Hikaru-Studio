@@ -1,0 +1,5 @@
+# Always keep ai-studio version when merging
+public/* merge=ours
+constant.ts merge=ours
+types.ts merge=ours
+README.md merge=ours
