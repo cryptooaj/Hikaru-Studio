@@ -9,11 +9,11 @@ export enum PageState {
 
 export enum ProjectCategory {
   ALL = 'All',
-  COMMERCIAL = 'Commercial photography',
-  CAFE_BEVERAGE = 'Cafe & Beverage',
-  ARCH_INTERIOR = 'Architectural / Interior',
+  PRODUCT = 'Commercial/Product',
+  CAFE_BEVERAGE = 'Cafe/Beverage',
   FOOD = 'Food photography',
-  PORTRAIT = 'Portrait photography'
+  EXHIBITION = 'Exhibition/Event',
+  ANIMAL = 'Cats Photography'
 }
 
 export interface Project {
