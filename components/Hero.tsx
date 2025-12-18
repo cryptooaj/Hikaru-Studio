@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  <div className="overflow-hidden">
                     <motion.h1 
                         variants={textRevealVariants} 
-                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-zinc-900 dark:text-white mb-0 text-left leading-[0.85] tracking-tighter"
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-primary text-left leading-[0.85] mt-1 lg:mt-4 tracking-tighter"
                     >
                       HIKARU
                     </motion.h1>
@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  <div className="overflow-hidden">
                     <motion.h1 
                         variants={textRevealVariants} 
-                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-primary text-left leading-[0.85] mt-1 lg:mt-4 tracking-tighter"
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-zinc-900 dark:text-white mb-0 text-left leading-[0.85] tracking-tighter"
                     >
                       STUDIO
                     </motion.h1>
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     
                     <button 
                         onClick={() => onNavigate(PageState.SERVICES)}
-                        className="px-5 lg:px-6 py-3 lg:py-4 text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] border border-zinc-300 dark:border-zinc-800 hover:border-primary transition-colors"
+                        className="px-5 lg:px-6 py-3 lg:py-4 text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-primary transition-all duration-300"
                     >
                         Our Services
                     </button>

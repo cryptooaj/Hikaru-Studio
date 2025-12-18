@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS } from '../constants';
 import { ProjectCategory, Project, PageState } from '../types';
-import { ExternalLink, X, User, Calendar, Tag, Layers, Play, ZoomIn, Pause, Volume2, VolumeX, Crosshair, Loader2, ImageOff, Maximize2 } from 'lucide-react';
+import { ExternalLink, X, User, Calendar, Tag, Layers, Play, ZoomIn, Pause, Volume2, VolumeX, Loader2, ImageOff, Maximize2 } from 'lucide-react';
 
 export const Portfolio: React.FC = () => {
-  const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.COMMERCIAL);
+  const [filter, setFilter] = useState<ProjectCategory>(ProjectCategory.PRODUCT);
   const [_hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   

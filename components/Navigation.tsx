@@ -20,8 +20,8 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
   };
 
   // Using a specific image for the navigation bar
-  const avatarSrc = "/IMG_7490.JPG";
-  const fallbackAvatarSrc = "/IMG_7490.JPG";
+  const avatarSrc = "/farnaz-logo.JPG";
+  const fallbackAvatarSrc = "/farnaz-logo.JPG";
 
   return (
     <>

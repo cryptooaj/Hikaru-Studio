@@ -69,8 +69,8 @@ export const Contact: React.FC = () => {
   };
 
   // The hero image for the contact section (the one provided by the user)
-  const contactHeroSrc = "/IMG_7492.JPG";
-  const fallbackHeroSrc = "/IMG_7491.JPG";
+  const contactHeroSrc = "/farnaz-contact.JPG";
+  const fallbackHeroSrc = "/farnaz-contact.JPG";
 
   return (
     <motion.section

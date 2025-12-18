@@ -19,7 +19,7 @@ export const About: React.FC = () => {
              <img 
               src="/farnaz.JPG" 
               onError={(e) => {
-                e.currentTarget.src = "/dist/farnaz.jpg";
+                e.currentTarget.src = "/farnaz-about.JPG";
               }}
               alt="Farnaz Hosseini" 
               className="w-full h-full object-cover" 
