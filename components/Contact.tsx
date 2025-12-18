@@ -2,6 +2,11 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { PageState } from '../types';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = 'service_56umvyp'; 
+const EMAILJS_TEMPLATE_ID = 'template_ds2o4x6'; 
+const EMAILJS_PUBLIC_KEY = 'UflsFsDmX_syyufWw';
 
 export const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -16,9 +21,55 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for reaching out! I'll get back to you soon.");
-    setFormState({ name: '', email: '', message: '' });
+    if (!form.current) return;
+
+    setIsSending(true);
+    setStatus(null);
+
+    const isConfigured = 
+      EMAILJS_SERVICE_ID && 
+      EMAILJS_TEMPLATE_ID && 
+      EMAILJS_PUBLIC_KEY;
+
+    if (!isConfigured) {
+      setTimeout(() => {
+        setIsSending(false);
+        setStatus({
+          type: 'success',
+          message: 'Message sent! (Demo Mode: No email was actually sent)'
+        });
+        setFormState({ user_name: '', user_email: '', message: '' });
+      }, 2000);
+      return;
+    }
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      
+      setStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully.'
+      });
+      setFormState({ user_name: '', user_email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS Failed:', error);
+      setStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again or email directly.'
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
+
+  // The hero image for the contact section (the one provided by the user)
+  const contactHeroSrc = "/asset/contact-hero.jpg";
+  const fallbackHeroSrc = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200";
 
   return (
     <motion.section
@@ -29,26 +80,29 @@ export const Contact: React.FC = () => {
       className="min-h-screen w-full pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto flex flex-col justify-between bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       <div className="flex flex-col lg:flex-row gap-16">
-        {/* Info */}
-        <div className="w-full lg:w-1/2 space-y-8">
-           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-8">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-primary shadow-xl shadow-primary/10 flex-shrink-0"
-              >
-                <img 
-                  src={avatarSrc} 
-                  onError={(e) => e.currentTarget.src = fallbackAvatarSrc}
-                  alt="Farnaz Hosseini" 
-                  className="w-full h-full object-cover" 
-                />
-              </motion.div>
-              <div>
-                <h2 className="text-6xl font-sans font-bold text-primary">Let's Connect</h2>
-                <p className="text-zinc-700 dark:text-zinc-400 text-lg mt-2">
-                  Ready to elevate your brand's visual identity? Reach out to discuss your next project.
-                </p>
-              </div>
+        {/* Info Column */}
+        <div className="w-full lg:w-1/2 flex flex-col space-y-8">
+           {/* Full Width Top Image - Clean version with original color and no zoom */}
+           <motion.div 
+             initial={{ opacity: 0, y: 10 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 0.8, ease: "easeOut" }}
+             className="w-full h-64 md:h-80 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-xl relative"
+           >
+              <img 
+                src={contactHeroSrc} 
+                onError={(e) => e.currentTarget.src = fallbackHeroSrc}
+                alt="Contact Visual" 
+                className="w-full h-full object-cover" 
+              />
+           </motion.div>
+
+           <div className="space-y-4">
+              <h2 className="text-6xl font-sans font-bold text-primary tracking-tight">Let's Connect</h2>
+              <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-lg leading-relaxed">
+                Ready to elevate your brand's visual identity? Reach out to discuss your next project, booking, or collaboration.
+              </p>
            </div>
 
            <div className="space-y-6 py-4">
@@ -96,8 +150,8 @@ export const Contact: React.FC = () => {
            </div>
         </div>
 
-        {/* Form */}
-        <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors">
+        {/* Form Column */}
+        <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors h-fit">
           <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
           <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
