@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Linkedin, Send, MessageCircle, Globe, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
@@ -67,7 +68,6 @@ export const Contact: React.FC = () => {
     }
   };
 
-  // The hero image for the contact section (the one provided by the user)
   const contactHeroSrc = "/asset/contact-hero.jpg";
   const fallbackHeroSrc = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200";
 
@@ -80,9 +80,7 @@ export const Contact: React.FC = () => {
       className="min-h-screen w-full pt-32 pb-12 px-6 md:px-12 lg:px-24 flex flex-col justify-between bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       <div className="flex flex-col lg:flex-row gap-16">
-        {/* Info Column */}
         <div className="w-full lg:w-1/2 flex flex-col space-y-8">
-           {/* Full Width Top Image - Clean version with original color and no zoom */}
            <motion.div 
              initial={{ opacity: 0, y: 10 }}
              whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +148,6 @@ export const Contact: React.FC = () => {
            </div>
         </div>
 
-        {/* Form Column */}
         <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors h-fit">
           <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
           <form ref={form} onSubmit={handleSubmit} className="space-y-6">
