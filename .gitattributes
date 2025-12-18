@@ -3,3 +3,4 @@ public/* merge=ours
 constant.ts merge=ours
 types.ts merge=ours
 README.md merge=ours
+deploy.yml merge=ours
