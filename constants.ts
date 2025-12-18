@@ -27,7 +27,7 @@ export const PROJECTS: Project[] = [
     id: 2,
     title: "Artisan Chemex Brew",
     category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "/cafe & beverge/Chemex.JPG",
+    imageUrl: "/cafe & beverge/Chemex.jpg",
     description: "A refined, macro-detail capture of a handcrafted Chemex pour-over created for lightbox display.",
     year: "2025",
     client: "Café Land",
