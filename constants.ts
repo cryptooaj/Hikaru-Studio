@@ -108,16 +108,17 @@ export const PROJECTS: Project[] = [
     fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
   },
    {
-    id: 8,
-    title: "Cool Down — Modern x Traditional Beverage Visual",
+    id: 9,
+    title: "Sun Shine Cocktail: Dynamic Natural Light",
     category: ProjectCategory.CAFE_BEVERAGE,
-    imageUrl: "/cafe & beverge/Drink Up.JPG",
-    description: "A vibrant beverage visual blending modern composition with traditional decorative elements, created for digital content production.",
+    imageUrl: "/cafe & beverge/IMG_2026-06-06-211956.jpg",
+    description: "High-impact, dynamic shot of a multi-layered mocktail/cocktail. Captured in optimal natural sunlight with a prime lens to enhance liquid clarity and action for Parsian Cafe's 2025 Instagram content.",
     year: "2025",
     client: "Parsian Cafe",
-    tags: ["Beverage Photography", "Modern & Traditional Fusion", "Natural Light"],
-    fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
-  },
+    tags: ["Beverage Photography", "Natural Light", "Social Media Content", "Cocktail", "Dynamic Shot", "Food Styling"],
+    fullDescription: "This image was created for Parsian Cafe's 2025 Instagram content campaign, focusing on vividness, freshness, and high quality tailored for mobile viewing and social engagement. The shot utilizes completely natural light, captured during the ideal time of day (optimal sunlight) to provide sharp highlights, rich shadows, and excellent clarity. The core objective was high-quality separation and clarity of the liquid product, clearly defining the distinct blue, red, and clear layers. A prime lens (fixed focal length) was used to ensure superior sharpness and detail. The composition is dynamic, featuring a captured moment of action as a stream of liquid falls into the glass, creating excitement and visual interest—perfect for generating stops and engagement on social feeds. The high-resolution capture and vibrant color palette were optimized specifically for use as high-impact Instagram content."
+
+   },
   
   //PRODUCT Category Projects
 
