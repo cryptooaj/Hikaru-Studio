@@ -107,7 +107,18 @@ export const PROJECTS: Project[] = [
     tags: ["Beverage Photography", "Modern & Traditional Fusion", "Natural Light"],
     fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
   },
-
+   {
+    id: 8,
+    title: "Cool Down — Modern x Traditional Beverage Visual",
+    category: ProjectCategory.CAFE_BEVERAGE,
+    imageUrl: "/cafe & beverge/Drink Up.JPG",
+    description: "A vibrant beverage visual blending modern composition with traditional decorative elements, created for digital content production.",
+    year: "2025",
+    client: "Parsian Cafe",
+    tags: ["Beverage Photography", "Modern & Traditional Fusion", "Natural Light"],
+    fullDescription: "This image was created for digital content production, combining a modern photographic approach with traditional decorative styling. Captured using a Sony fixed focal length lens, the scene relies on natural lighting to enhance freshness, transparency, and color vibrancy. Particular attention was given to color harmony between the beverage, background, and traditional patterned elements, creating a balanced yet dynamic visual identity. Professional post-production refined tonal balance and clarity, with a clear focus on presenting the drink as refreshing, visually appealing, and appetizing—well-suited for contemporary social media storytelling."
+  },
+  
   //PRODUCT Category Projects
 
   {
