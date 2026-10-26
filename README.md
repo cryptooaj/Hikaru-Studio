@@ -2,6 +2,8 @@
 
 React, TypeScript and Vite portfolio for Farnaz Hosseini.
 
+The [UI design system](DESIGN.md) records the site reference, layout decisions and media rules.
+
 ## Develop and build
 
 Use Node 20 or later. Run `npm ci`, `npm run dev`, and `npm run build`. The build output is `dist/`. The app expects to be served at the root of `https://studiohikaru.com/`.

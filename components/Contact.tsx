@@ -85,24 +85,24 @@ export const Contact: React.FC = () => {
               <img 
                 src={contactHeroSrc} 
                 
-                alt="Contact Visual" 
+                alt="Hikaru Studio portrait" 
                 className="w-full h-full object-cover" 
               />
            </motion.div>
 
            <div className="space-y-4">
-              <h2 className="text-6xl font-sans font-bold text-primary tracking-tight">Let's Connect</h2>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold text-primary tracking-tight">Let's Connect</h2>
               <p className="text-zinc-700 dark:text-zinc-400 text-lg max-w-lg leading-relaxed">
-                Ready to elevate your brand's visual identity? Reach out to discuss your next project, booking, or collaboration.
+                Tell me what you are making, where the images will be used, and when you need them. I will get back to you about the next steps.
               </p>
            </div>
 
            <div className="space-y-6 py-4">
              <a href="mailto:hikarustudio.photo@gmail.com" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
-               <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
+               <div className="w-12 h-12 shrink-0 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Mail className="w-5 h-5" />
                </div>
-               <span className="text-lg">hikarustudio.photo@gmail.com</span>
+               <span className="min-w-0 break-all text-base sm:text-lg">hikarustudio.photo@gmail.com</span>
              </a>
              
              <a href="tel:+989123855908" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
@@ -142,7 +142,7 @@ export const Contact: React.FC = () => {
            </div>
         </div>
 
-        <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors h-fit">
+        <div className="w-full lg:w-1/2 bg-white dark:bg-zinc-900/20 p-5 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none transition-colors h-fit">
           <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
           <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
