@@ -12,7 +12,6 @@ import { ArrowUp } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageState>(PageState.HOME);
-  const [isLoading, setIsLoading] = useState(true);
   const [showBackToTop, setShowBackToTop] = useState(false);
   
   // Theme State
@@ -22,12 +21,6 @@ const App: React.FC = () => {
     }
     return 'dark';
   });
-
-  useEffect(() => {
-    // Simulate initial asset loading
-    const timer = setTimeout(() => setIsLoading(false), 2500);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Theme Effect
   useEffect(() => {
@@ -84,71 +77,6 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (isLoading) {
-    return (
-      <div className="h-screen w-full flex flex-col items-center justify-center bg-zinc-950 z-50 relative overflow-hidden">
-         <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-900/10 opacity-20 pointer-events-none" />
-         
-         <div className="relative flex items-center justify-center w-64 h-64">
-            {/* Core Light Pulse */}
-            <motion.div
-              className="absolute w-3 h-3 bg-white rounded-full blur-[1px] shadow-[0_0_30px_rgba(255,255,255,0.8)]"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Inner Aperture Ring */}
-            <motion.div
-              className="absolute w-16 h-16 border-[1px] border-zinc-800 border-t-primary rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            />
-
-            {/* Middle Ring */}
-            <motion.div
-              className="absolute w-24 h-24 border-[1px] border-zinc-800 border-l-primary/50 rounded-full opacity-60"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            />
-            
-             {/* Outer Bracket Ring */}
-            <motion.div
-              className="absolute w-32 h-32 border-[1px] border-transparent border-r-zinc-700 border-l-zinc-700 rounded-full opacity-40"
-              animate={{ rotate: 180, scale: [1, 1.05, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-         </div>
-         
-         <motion.div 
-           initial={{ opacity: 0, y: 10 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.5 }}
-           className="flex flex-col items-center z-10"
-         >
-            <span className="font-sans font-bold text-3xl text-white tracking-wider">Hikaru Studio</span>
-            <div className="flex items-center gap-2 mt-3">
-               <motion.div 
-                 className="h-[1px] w-8 bg-zinc-700"
-                 initial={{ width: 0 }}
-                 animate={{ width: 32 }}
-                 transition={{ delay: 0.8, duration: 0.5 }}
-               />
-               <span className="text-[10px] text-zinc-500 uppercase tracking-[0.3em]">Loading</span>
-               <motion.div 
-                 className="h-[1px] w-8 bg-zinc-700"
-                 initial={{ width: 0 }}
-                 animate={{ width: 32 }}
-                 transition={{ delay: 0.8, duration: 0.5 }}
-               />
-            </div>
-         </motion.div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen font-sans selection:bg-primary selection:text-white transition-colors duration-300">
       <Navigation 
@@ -191,3 +119,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

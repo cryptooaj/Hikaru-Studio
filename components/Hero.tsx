@@ -88,12 +88,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                className="pointer-events-auto max-w-xl pt-20 md:pt-0"
              >
                  <div className="overflow-hidden">
-                    <motion.h1 
+                    <motion.div 
                         variants={textRevealVariants} 
                         className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-primary text-left leading-[0.85] mt-1 lg:mt-4 tracking-tighter"
                     >
                       HIKARU
-                    </motion.h1>
+                    </motion.div>
                  </div>
                  <div className="overflow-hidden">
                     <motion.h1 
@@ -106,8 +106,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
                  <motion.div variants={fadeUpVariants} className="mt-8 lg:mt-12 text-base lg:text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed text-left max-w-md">
                     <p className="border-l-2 border-primary pl-6">
-                        <span className="font-bold text-zinc-900 dark:text-zinc-100">Visual Storyteller & Brand Designer.</span><br/>
-                        From meticulous concepts to professional lenses—creating immersive experiences that define the future of your brand.
+                        <span className="font-bold text-zinc-900 dark:text-zinc-100">Commercial and product photographer in Tehran.</span><br/>
+                        Photography and video that help brands present their products clearly and memorably.
                     </p>
                  </motion.div>
 
@@ -122,15 +122,17 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     </button>
                     
                     <button 
-                        onClick={() => onNavigate(PageState.SERVICES)}
+                        onClick={() => onNavigate(PageState.CONTACT)}
                         className="px-5 lg:px-6 py-3 lg:py-4 text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-white hover:border-primary dark:hover:border-primary transition-all duration-300"
                     >
-                        Our Services
+                        Start a Project
                     </button>
                  </motion.div>
              </motion.div>
         </div>
 
+        {/* Featured studio work behind the camera treatment */}
+        <img src="/commerical photography/Black Bag.JPG" alt="Hikaru Studio commercial product photography" fetchPriority="high" className="absolute inset-0 md:left-1/2 md:w-1/2 w-full h-full object-cover opacity-20 dark:opacity-30 pointer-events-none" />
         {/* 3D Camera/Lens Section with Lighting Enhancements */}
         <div className="absolute inset-0 md:static md:w-1/2 h-full flex items-center justify-center z-20 perspective-[2000px] pointer-events-none md:pointer-events-auto">
              <motion.div 
@@ -325,3 +327,4 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     </section>
   );
 };
+

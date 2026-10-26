@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageState } from '../types';
 import { NAV_ITEMS } from '../constants';
@@ -13,6 +13,25 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate, theme, onToggleTheme }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    menuRef.current?.querySelector<HTMLButtonElement>('button')?.focus();
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+      if (event.key === 'Tab' && menuRef.current) {
+        const controls = Array.from(menuRef.current.querySelectorAll<HTMLButtonElement>('button'));
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => { document.body.style.overflow = previousOverflow; document.removeEventListener('keydown', handleKey); menuButtonRef.current?.focus(); };
+  }, [isMobileMenuOpen]);
 
   const handleMobileNavigate = (page: PageState) => {
     onNavigate(page);
@@ -91,7 +110,9 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
 
                 <div className="md:hidden">
                     <button 
+                        ref={menuButtonRef}
                         onClick={() => setIsMobileMenuOpen(true)}
+                        aria-expanded={isMobileMenuOpen}
                         className="p-2 text-zinc-900 dark:text-white"
                         aria-label="Open menu"
                     >
@@ -110,6 +131,8 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: "100%" }}
                     transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                    ref={menuRef}
+                    role="dialog" aria-modal="true" aria-label="Mobile navigation"
                     className="fixed inset-0 z-[60] bg-zinc-50 dark:bg-zinc-950 flex flex-col p-8 md:hidden"
                 >
                     <div className="flex justify-between items-center mb-16">
@@ -126,6 +149,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
                         </div>
                         <button 
                             onClick={() => setIsMobileMenuOpen(false)}
+                            aria-label="Close menu"
                             className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-white"
                         >
                             <X size={24} />

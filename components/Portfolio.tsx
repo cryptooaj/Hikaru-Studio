@@ -17,6 +17,8 @@ export const Portfolio: React.FC = () => {
   const [mediaError, setMediaError] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
   const zoomContainerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -25,10 +27,12 @@ export const Portfolio: React.FC = () => {
   const [duration, setDuration] = useState('0:00');
 
   const filteredProjects = PROJECTS.filter(p => p.category === filter);
+  const mediaUrl = (path: string) => path.startsWith('/') || path.startsWith('http') ? path : `/${path}`;
 
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => dialogRef.current?.querySelector<HTMLButtonElement>('button')?.focus());
       setShowBefore(false); 
       setIsZoomed(false);
       setZoomPos({ x: 0.5, y: 0.5 });
@@ -39,6 +43,7 @@ export const Portfolio: React.FC = () => {
       setVideoProgress(0);
     } else {
       document.body.style.overflow = 'unset';
+      triggerRef.current?.focus();
     }
     return () => {
       document.body.style.overflow = 'unset';
@@ -175,18 +180,22 @@ export const Portfolio: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="relative group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${project.title}`}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerRef.current = e.currentTarget; setSelectedProject(project); } }}
+                className="relative group cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                onClick={() => setSelectedProject(project)}
+                onClick={(e) => { triggerRef.current = e.currentTarget; setSelectedProject(project); }}
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-900 shadow-md hover:shadow-xl transition-all duration-500">
                   <motion.img
-                    src={project.imageUrl}
+                    src={mediaUrl(project.imageUrl)}
                     loading="lazy"
                     decoding="async"
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 "
                   />
                   {project.videoUrl && (
                     <div className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
@@ -202,7 +211,7 @@ export const Portfolio: React.FC = () => {
 
                 <div className="mt-4 flex justify-between items-start">
                   <div>
-                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-200">{project.title}</h3>
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-200 line-clamp-2">{project.title}</h3>
                     <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1">{project.category}</p>
                   </div>
                   <span className="text-xs border border-zinc-300 dark:border-zinc-800 px-2 py-1 rounded text-zinc-500">
@@ -218,7 +227,15 @@ export const Portfolio: React.FC = () => {
       {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center px-0 md:px-4 py-0 md:py-8 overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center px-0 md:px-4 py-0 md:py-8 overflow-hidden" onKeyDown={(e) => {
+            if (e.key === 'Escape') handleCloseModal();
+            if (e.key === 'Tab' && dialogRef.current) {
+              const focusables = Array.from(dialogRef.current.querySelectorAll<HTMLElement>('button, input, a[href]')).filter(el => !el.hasAttribute('disabled'));
+              const first = focusables[0], last = focusables[focusables.length - 1];
+              if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+              else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+            }
+          }}>
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -233,11 +250,14 @@ export const Portfolio: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 20 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              ref={dialogRef}
+              role="dialog" aria-modal="true" aria-labelledby="project-title"
               className="relative w-full max-w-6xl h-full md:h-auto md:max-h-[90vh] bg-white dark:bg-zinc-900 md:rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 border-0 md:border border-zinc-200 dark:border-zinc-800"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={handleCloseModal}
+                aria-label="Close project"
                 className="absolute top-4 right-4 z-[110] p-2 bg-black/10 dark:bg-black/40 text-black dark:text-white rounded-full hover:bg-black/20 dark:hover:bg-white dark:hover:text-black transition-colors backdrop-blur-md border border-white/10"
               >
                 <X size={24} />
@@ -292,8 +312,8 @@ export const Portfolio: React.FC = () => {
                    <div className="w-full h-full relative group bg-black z-10">
                       <video 
                         ref={videoRef}
-                        src={selectedProject.videoUrl} 
-                        poster={selectedProject.imageUrl}
+                        src={mediaUrl(selectedProject.videoUrl)} 
+                        poster={mediaUrl(selectedProject.imageUrl)}
                         autoPlay 
                         muted={isMuted}
                         loop 
@@ -371,7 +391,7 @@ export const Portfolio: React.FC = () => {
                         {!mediaError && (
                           <motion.img
                               key={showBefore ? 'before' : 'after'}
-                              src={showBefore ? (selectedProject.originalImageUrl || selectedProject.imageUrl) : selectedProject.imageUrl}
+                              src={mediaUrl(showBefore ? (selectedProject.originalImageUrl || selectedProject.imageUrl) : selectedProject.imageUrl)}
                               loading="eager"
                               onLoad={() => setIsMediaLoading(false)}
                               onError={() => {
@@ -432,7 +452,7 @@ export const Portfolio: React.FC = () => {
                       <span className="inline-block px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-[10px] font-bold text-primary mb-4 border border-zinc-200 dark:border-zinc-700 uppercase tracking-widest">
                         {selectedProject.category}
                       </span>
-                      <h2 className="text-3xl md:text-5xl font-sans font-bold text-zinc-900 dark:text-white mb-2 leading-tight">
+                      <h2 id="project-title" className="text-3xl md:text-5xl font-sans font-bold text-zinc-900 dark:text-white mb-2 leading-tight">
                         {selectedProject.title}
                       </h2>
                       <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">{selectedProject.description}</p>
@@ -478,3 +498,4 @@ export const Portfolio: React.FC = () => {
     </>
   );
 };
+
