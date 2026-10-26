@@ -3,7 +3,7 @@ import { Project, ProjectCategory } from './types';
 
 export const NAV_ITEMS = [
   { id: 'HOME', label: 'Home' },
-  { id: 'PORTFOLIO', label: 'PORTFOLIO' },
+  { id: 'PORTFOLIO', label: 'Work' },
   { id: 'ABOUT', label: 'About' },
   { id: 'SERVICES', label: 'Services' },
   { id: 'CONTACT', label: 'Contact' },
@@ -402,3 +402,4 @@ export const PROJECTS: Project[] = [
     fullDescription: "My life has always been deeply inspired by cats, and without hesitation, I can say that photographing cats is the most enjoyable and meaningful form of photography for me. These projects were created for individuals who are cat guardians and requested portraits of their own cats—each one unique, independent, and full of character. Photographing cats is the sweetest and most fulfilling work I do. Their presence, autonomy, and quiet confidence continually inspire my visual approach and storytelling. I hold great respect for anyone who takes responsibility for caring for cats, and I deeply value the bond between humans and these remarkable animals. I am always open and enthusiastic about photographing cats—capturing their personality, beauty, and spirit through thoughtful, respectful, and expressive imagery."
 },
 ];
+

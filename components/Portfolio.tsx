@@ -143,34 +143,37 @@ export const Portfolio: React.FC = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        className="min-h-screen w-full py-32 px-6 md:px-12 max-w-8xl mx-auto bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
+        className="min-h-screen w-full py-24 md:py-32 px-6 md:px-12 max-w-8xl mx-auto bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
       >
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div className="flex flex-col gap-8 mb-10">
           <div>
-            <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 text-primary whitespace-nowrap">Selected Works</h2>
+            <p className="text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 mb-3">Portfolio</p>
+            <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 text-zinc-900 dark:text-white tracking-tight">Selected works<span className="text-primary">.</span></h2>
             <p className="text-zinc-600 dark:text-zinc-400 max-w-md">
-              A curated collection of projects exploring the intersection of design, technology, and human emotion.
+              Explore photography and motion projects by the kind of work you need.
             </p>
           </div>
           
-          <div className="flex flex-nowrap overflow-x-auto gap-4 pb-2 md:pb-0 w-full md:w-auto scrollbar-hide">
+          <div role="group" aria-label="Filter projects by category"
+          className="flex flex-nowrap overflow-x-auto gap-2 pb-3 w-full scrollbar-hide">
             {Object.values(ProjectCategory).map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full border text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0 ${
+                aria-pressed={filter === cat}
+                className={`min-h-11 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 whitespace-nowrap flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                   filter === cat 
                     ? 'bg-primary text-white border-primary shadow-lg shadow-red-500/20' 
                     : 'bg-transparent text-zinc-500 dark:text-zinc-400 border-zinc-300 dark:border-zinc-800 hover:border-primary dark:hover:border-primary hover:text-primary dark:hover:text-primary'
                 }`}
               >
-                {cat}
+                {cat} <span className="opacity-70 ml-1">{PROJECTS.filter(project => project.category === cat).length}</span>
               </button>
             ))}
           </div>
         </div>
 
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project) => (
               <motion.div
@@ -202,7 +205,7 @@ export const Portfolio: React.FC = () => {
                       <Play size={12} className="text-white fill-white" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
                         <ExternalLink className="w-6 h-6 text-white" />
                      </div>
@@ -212,7 +215,7 @@ export const Portfolio: React.FC = () => {
                 <div className="mt-4 flex justify-between items-start">
                   <div>
                     <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-200 line-clamp-2">{project.title}</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1">{project.category}</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-300 mt-1">{project.category}</p>
                   </div>
                   <span className="text-xs border border-zinc-300 dark:border-zinc-800 px-2 py-1 rounded text-zinc-500">
                     {project.year}
@@ -222,6 +225,10 @@ export const Portfolio: React.FC = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+        <div className="mt-14 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+          <p className="text-zinc-700 dark:text-zinc-300">See something that fits your brief?</p>
+          <a href="#CONTACT" className="inline-flex items-center justify-center min-h-11 px-6 py-3 bg-primary text-white font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Discuss a project</a>
+        </div>
       </motion.section>
 
       {/* Project Modal */}
