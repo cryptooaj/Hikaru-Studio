@@ -1,20 +1,11 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Hikaru Studio
 
-# Run and deploy your AI Studio app
+React, TypeScript and Vite portfolio for Farnaz Hosseini.
 
-This contains everything you need to run your app locally.
+## Develop and build
 
-View your app in AI Studio: https://ai.studio/apps/drive/1TfdCk_Gnlwv4dPe8h5rwR77_-H5_LDfZ
+Use Node 20 or later. Run `npm ci`, `npm run dev`, and `npm run build`. The build output is `dist/`. The app expects to be served at the root of `https://studiohikaru.com/`.
 
-## Run Locally
+Photography and video live under `public/`. Project metadata and media paths are maintained in `constants.ts`; check filename case when adding work. Public EmailJS identifiers are configured in `components/Contact.tsx`. Never put an EmailJS private key in browser code.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+GitHub Actions deploys the `ai-studio` branch to GitHub Pages and runs a build check for pull requests. Confirm the custom domain and Pages source in repository settings before changing deployment branches.

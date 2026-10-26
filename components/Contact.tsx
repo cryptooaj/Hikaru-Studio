@@ -33,14 +33,8 @@ export const Contact: React.FC = () => {
       EMAILJS_PUBLIC_KEY;
 
     if (!isConfigured) {
-      setTimeout(() => {
-        setIsSending(false);
-        setStatus({
-          type: 'success',
-          message: 'Message sent! (Demo Mode: No email was actually sent)'
-        });
-        setFormState({ user_name: '', user_email: '', message: '' });
-      }, 2000);
+      setIsSending(false);
+      setStatus({type: 'error', message: 'The form is unavailable. Please email us directly.'});
       return;
     }
 
@@ -70,7 +64,6 @@ export const Contact: React.FC = () => {
 
   // The hero image for the contact section (the one provided by the user)
   const contactHeroSrc = "/farnaz-contact.JPG";
-  const fallbackHeroSrc = "/farnaz-contact.JPG";
 
   return (
     <motion.section
@@ -91,7 +84,7 @@ export const Contact: React.FC = () => {
            >
               <img 
                 src={contactHeroSrc} 
-                onError={(e) => e.currentTarget.src = fallbackHeroSrc}
+                
                 alt="Contact Visual" 
                 className="w-full h-full object-cover" 
               />
@@ -112,7 +105,7 @@ export const Contact: React.FC = () => {
                <span className="text-lg">hikarustudio.photo@gmail.com</span>
              </a>
              
-             <a href="tel:09123855908" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
+             <a href="tel:+989123855908" className="flex items-center gap-4 text-zinc-800 dark:text-zinc-300 hover:text-primary dark:hover:text-white transition-colors group">
                <div className="w-12 h-12 rounded-full bg-zinc-200 dark:bg-zinc-900 flex items-center justify-center group-hover:bg-zinc-300 dark:group-hover:bg-zinc-800 transition-colors">
                  <Phone className="w-5 h-5" />
                </div>
@@ -135,12 +128,12 @@ export const Contact: React.FC = () => {
                  <Linkedin size={18} className="text-[#0077b5] dark:text-[#0077b5] group-hover:text-white" />
                  <span>LinkedIn</span>
                </a>
-               <a href="http://wa.me/+989123855908" target="_blank" rel="noopener noreferrer"
+               <a href="https://wa.me/989123855908" target="_blank" rel="noopener noreferrer"
                   className="group flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-[#25D366] dark:hover:bg-[#25D366] transition-all">
                  <MessageCircle size={18} className="text-[#25D366] dark:text-[#25D366] group-hover:text-white" />
                  <span>WhatsApp</span>
                </a>
-               <a href="http://t.me/ifarnazhoseini" target="_blank" rel="noopener noreferrer"
+               <a href="https://t.me/ifarnazhoseini" target="_blank" rel="noopener noreferrer"
                   className="group flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-700 dark:text-zinc-400 hover:text-white hover:bg-[#0088cc] dark:hover:bg-[#0088cc] transition-all">
                  <Send size={18} className="text-[#0088cc] dark:text-[#0088cc] group-hover:text-white" />
                  <span>Telegram</span>
@@ -153,9 +146,10 @@ export const Contact: React.FC = () => {
           <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-white mb-8">Send a message</h3>
           <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-                <label className="text-xs text-zinc-500 uppercase tracking-wider">Name</label>
+                <label htmlFor="contact-name" className="text-xs text-zinc-500 uppercase tracking-wider">Name</label>
                 <input 
                   type="text" 
+                  id="contact-name"
                   name="user_name"
                   required
                   value={formState.user_name}
@@ -165,9 +159,10 @@ export const Contact: React.FC = () => {
                 />
             </div>
             <div className="space-y-2">
-                <label className="text-xs text-zinc-500 uppercase tracking-wider">Email</label>
+                <label htmlFor="contact-email" className="text-xs text-zinc-500 uppercase tracking-wider">Email</label>
                 <input 
                   type="email" 
+                  id="contact-email"
                   name="user_email"
                   required
                   value={formState.user_email}
@@ -178,8 +173,9 @@ export const Contact: React.FC = () => {
             </div>
             
             <div className="space-y-2">
-                <label className="text-xs text-zinc-500 uppercase tracking-wider">Message</label>
+                <label htmlFor="contact-message" className="text-xs text-zinc-500 uppercase tracking-wider">Message</label>
                 <textarea 
+                  id="contact-message"
                   name="message"
                   required
                   rows={5}
@@ -212,6 +208,7 @@ export const Contact: React.FC = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
+                    role="status" aria-live="polite"
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm ${
                       status.type === 'success' 
                         ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-200' 
@@ -234,3 +231,4 @@ export const Contact: React.FC = () => {
     </motion.section>
   );
 };
+
