@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section
       id={PageState.HOME}
-      className="h-screen w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
+      className="min-h-[100svh] md:h-screen w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       {/* Viewfinder Grid Overlay */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-10 dark:opacity-20">
@@ -77,15 +77,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-zinc-400 rounded-full opacity-30"></div>
       </div>
 
-      <div className="absolute inset-0 w-full h-full flex flex-col md:flex-row">
+      <div className="relative w-full flex flex-col md:absolute md:inset-0 md:h-full md:flex-row">
         
         {/* Text Section */}
-        <div className="relative z-30 w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:pl-20 lg:pl-24 pointer-events-none">
+        <div className="relative z-30 w-full md:w-1/2 flex flex-col justify-center px-6 pt-32 pb-10 md:h-full md:py-0 md:pl-20 lg:pl-24 pointer-events-none">
              <motion.div 
                variants={wrapperVariants}
                initial="hidden"
                animate="visible"
-               className="pointer-events-auto max-w-xl pt-20 md:pt-0"
+               className="pointer-events-auto max-w-xl"
              >
                  <div className="overflow-hidden">
                     <motion.div 
@@ -131,10 +131,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
              </motion.div>
         </div>
 
-        {/* Featured studio work behind the camera treatment */}
-        <img src="/commerical photography/Black Bag.JPG" alt="Hikaru Studio commercial product photography" fetchPriority="high" className="absolute inset-0 md:left-1/2 md:w-1/2 w-full h-full object-cover opacity-20 dark:opacity-30 pointer-events-none" />
         {/* 3D Camera/Lens Section with Lighting Enhancements */}
-        <div className="absolute inset-0 md:static md:w-1/2 h-full flex items-center justify-center z-20 perspective-[2000px] pointer-events-none md:pointer-events-auto">
+        <div className="relative z-20 w-full h-[370px] shrink-0 flex items-center justify-center perspective-[2000px] md:static md:w-1/2 md:h-full md:pointer-events-auto">
+             <img src="/commerical photography/Black Bag.JPG" alt="Hikaru Studio commercial product photography" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-30 pointer-events-none" />
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9, rotateY: -30 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -319,7 +318,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30"
+        className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-3 z-30"
       >
         <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent"></div>
         <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500">Explore</span>
