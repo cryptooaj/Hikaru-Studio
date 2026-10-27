@@ -3,6 +3,7 @@
 React, TypeScript and Vite portfolio for Farnaz Hosseini.
 
 The [UI design system](DESIGN.md) records the site reference, layout decisions and media rules.
+The [responsive UI test report](UI_TEST_REPORT.md) records observed browser issues and the regression checklist.
 
 ## Develop and build
 

@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section
       id={PageState.HOME}
-      className="min-h-[100svh] md:h-screen w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
+      className="min-h-[100svh] lg:h-screen w-full relative overflow-hidden bg-zinc-50 dark:bg-zinc-950 transition-colors duration-300"
     >
       {/* Viewfinder Grid Overlay */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-10 dark:opacity-20">
@@ -77,10 +77,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-zinc-400 rounded-full opacity-30"></div>
       </div>
 
-      <div className="relative w-full flex flex-col md:absolute md:inset-0 md:h-full md:flex-row">
+      <div className="relative w-full flex flex-col lg:absolute lg:inset-0 lg:h-full lg:flex-row">
         
         {/* Text Section */}
-        <div className="relative z-30 w-full md:w-1/2 flex flex-col justify-center px-6 pt-32 pb-10 md:h-full md:py-0 md:pl-20 lg:pl-24 pointer-events-none">
+        <div className="relative z-30 w-full lg:w-1/2 flex flex-col justify-center px-6 pt-32 pb-10 lg:h-full lg:py-0 lg:pl-24 pointer-events-none">
              <motion.div 
                variants={wrapperVariants}
                initial="hidden"
@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  <div className="overflow-hidden">
                     <motion.div 
                         variants={textRevealVariants} 
-                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-primary text-left leading-[0.85] mt-1 lg:mt-4 tracking-tighter"
+                        className="text-5xl sm:text-6xl md:text-7xl xl:text-9xl font-sans font-black text-primary text-left leading-[0.85] mt-1 lg:mt-4 tracking-tighter"
                     >
                       HIKARU
                     </motion.div>
@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                  <div className="overflow-hidden">
                     <motion.h1 
                         variants={textRevealVariants} 
-                        className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-sans font-black text-zinc-900 dark:text-white mb-0 text-left leading-[0.85] tracking-tighter"
+                        className="text-5xl sm:text-6xl md:text-7xl xl:text-9xl font-sans font-black text-zinc-900 dark:text-white mb-0 text-left leading-[0.85] tracking-tighter"
                     >
                       STUDIO
                     </motion.h1>
@@ -132,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* 3D Camera/Lens Section with Lighting Enhancements */}
-        <div className="relative z-20 w-full h-[370px] shrink-0 flex items-center justify-center perspective-[2000px] md:static md:w-1/2 md:h-full md:pointer-events-auto">
+        <div className="relative z-20 w-full h-[370px] shrink-0 flex items-center justify-center perspective-[2000px] lg:static lg:w-1/2 lg:h-full lg:pointer-events-auto">
              <img src="/commerical photography/Black Bag.JPG" alt="Hikaru Studio commercial product photography" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-30 pointer-events-none" />
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9, rotateY: -30 }}

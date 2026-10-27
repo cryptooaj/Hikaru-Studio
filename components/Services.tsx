@@ -1,11 +1,10 @@
 import React from 'react';
-import { Camera, Video, Smartphone, Wand2, ArrowRight } from 'lucide-react';
+import { Camera, Video, Wand2, ArrowRight } from 'lucide-react';
 import { PageState } from '../types';
 
 const services = [
   { icon: Camera, title: 'Photography', description: 'Images that make the product, place or person the focus.', examples: ['Commercial & product', 'Food & café', 'Portrait & spaces'] },
   { icon: Video, title: 'Video production', description: 'Short visual stories for campaigns and digital channels.', examples: ['Product films', 'Social reels', 'Behind the scenes'] },
-  { icon: Smartphone, title: 'Mobile content', description: 'Agile photo and video content made for social platforms.', examples: ['Café & product reels', 'Event coverage', 'Tutorial content'] },
   { icon: Wand2, title: 'Editing', description: 'Thoughtful finishing that keeps every visual consistent.', examples: ['Photo retouching', 'Video editing', 'Color & finishing'] },
 ];
 
@@ -15,7 +14,7 @@ export const Services: React.FC = () => (
       <p className="text-xs uppercase tracking-[0.25em] text-zinc-600 dark:text-zinc-400 mb-3">Services</p>
       <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white tracking-tight">From concept to final image<span className="text-primary">.</span></h2>
       <p className="mt-5 text-lg text-zinc-700 dark:text-zinc-300 max-w-2xl leading-relaxed">Choose the format that fits your project. We can shape the visual direction together.</p>
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {services.map(({ icon: Icon, title, description, examples }, index) => (
           <article key={title} className="p-6 md:p-8 bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-xl hover:border-primary/60 transition-colors">
             <div className="flex items-start justify-between gap-4">
