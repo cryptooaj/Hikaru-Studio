@@ -179,7 +179,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
                     </ul>
 
                     <div className="mt-auto">
-                        <p className="text-zinc-500 dark:text-zinc-600 text-sm uppercase tracking-widest">
+                        <p className="text-zinc-500 dark:text-zinc-400 text-sm uppercase tracking-widest">
                             &copy; {new Date().getFullYear()} Hikaru Studio
                         </p>
                     </div>
