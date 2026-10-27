@@ -225,7 +225,7 @@ export const Contact: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-20 text-center text-zinc-500 dark:text-zinc-700 text-sm">
+      <div className="mt-20 text-center text-zinc-500 dark:text-zinc-400 text-sm">
         &copy; {new Date().getFullYear()} Hikaru Studio. All Rights Reserved.
       </div>
     </motion.section>

@@ -132,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* 3D Camera/Lens Section with Lighting Enhancements */}
-        <div className="relative z-20 w-full h-[370px] shrink-0 flex items-center justify-center perspective-[2000px] lg:static lg:w-1/2 lg:h-full lg:pointer-events-auto">
+        <div className="relative z-20 w-full h-[370px] md:mt-24 lg:mt-0 shrink-0 flex items-center justify-center perspective-[2000px] lg:static lg:w-1/2 lg:h-full lg:pointer-events-auto">
              <img src="/commerical photography/Black Bag.JPG" alt="Hikaru Studio commercial product photography" fetchPriority="high" className="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-30 pointer-events-none" />
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9, rotateY: -30 }}
