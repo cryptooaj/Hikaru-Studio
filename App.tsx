@@ -54,11 +54,8 @@ const App: React.FC = () => {
       }
       setCurrentPage(current);
 
-      if (window.scrollY > 500) {
-        setShowBackToTop(true);
-      } else {
-        setShowBackToTop(false);
-      }
+      const nearFooter = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 160;
+      setShowBackToTop(window.scrollY > 500 && !nearFooter);
     };
 
     window.addEventListener('scroll', handleScroll);
